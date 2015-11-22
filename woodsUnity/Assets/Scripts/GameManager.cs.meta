@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: b360ded320394284d84821c38226a880
+timeCreated: 1448147112
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - myCamera: {instanceID: 0}
+  - treePrefab1: {instanceID: 0}
+  - treePrefab2: {instanceID: 0}
+  - treePrefab3: {instanceID: 0}
+  - deerPrefab: {fileID: 112946, guid: 80881a157e1523e419c7ee86395d216e, type: 2}
+  - wolfPrefab: {instanceID: 0}
+  - obstaclePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

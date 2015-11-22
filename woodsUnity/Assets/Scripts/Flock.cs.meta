@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d46a631655bd4704bb35f73dbae0a838
+timeCreated: 1448144373
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - deerPrefab: {fileID: 112946, guid: 80881a157e1523e419c7ee86395d216e, type: 2}
+  - wolfPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
