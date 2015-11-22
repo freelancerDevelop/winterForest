@@ -14,6 +14,7 @@ abstract public class Vehicle : MonoBehaviour {
 	protected Vector3 velocity;
 	//position,forward, right will be accessed through Transform component
 	protected Vector3 desired;
+    public float safeDistance = 5.0f;
 
 	//flocking algorithms will need the velocity
 	public Vector3 Velocity{
@@ -24,6 +25,7 @@ abstract public class Vehicle : MonoBehaviour {
 	public float maxForce = 12;
 	public float mass = 1;
 	public float radius = 1;
+    protected float wanderAngle;
 
     protected GameManager gm;
 
@@ -69,8 +71,8 @@ abstract public class Vehicle : MonoBehaviour {
 	protected Vector3 seek (Vector3 targetPosition)
 	{
 		Vector3 seekVector = targetPosition - this.transform.position;
-		seekVector.Normalize ();
-		seekVector = seekVector*maxSpeed;
+		
+		seekVector = seekVector.normalized*maxSpeed;
 		seekVector.y = 0;
 		return (seekVector - this.velocity).normalized;
 	}
@@ -78,39 +80,35 @@ abstract public class Vehicle : MonoBehaviour {
 	protected Vector3 avoid()
 	{
 		GameObject[] obstacles = gm.Obstacles;
-		Vector3 vecToCenter;
+		Vector3 vecToCenter = Vector3.zero;
 		float rad;
 		Vector3 desired = Vector3.zero;
 		for (int i = 0; i < obstacles.Length; i++ )
 		{
 			vecToCenter = obstacles[i].transform.position - this.transform.position;
 			rad = obstacles[i].GetComponent<ObstacleScript>().Radius;
-			if (Vector3.SqrMagnitude(vecToCenter) > rad * rad)
+			if (vecToCenter.sqrMagnitude > Mathf.Pow(1.0f + safeDistance,2))
 				continue;
 			if (Vector3.Dot(vecToCenter, this.transform.forward) < 0)
 				continue;
-			if (Mathf.Abs(Vector3.Dot(vecToCenter, this.transform.forward)) > this.radius + rad)
+			if (Mathf.Abs(Vector3.Dot(vecToCenter, this.transform.right)) > this.radius + 1 + .1)
 				continue;
-			if(Vector3.Dot(vecToCenter,this.transform.right) > 0)
-				desired+= this.transform.right*-1*maxSpeed;
-			if(Vector3.Dot(vecToCenter,this.transform.right) < 0)
-				desired+= this.transform.right*maxSpeed;
+            if (Vector3.Dot(vecToCenter, this.transform.right) > 0)
+                desired += this.transform.right * -1 * maxSpeed * safeDistance * safeDistance / vecToCenter.sqrMagnitude;
+            else if (Vector3.Dot(vecToCenter, this.transform.right) <= 0)
+                desired += this.transform.right * maxSpeed * safeDistance * safeDistance / vecToCenter.sqrMagnitude;
+            
 		}
-		
-		return desired.normalized;
+
+        return desired.normalized;
+        
 	}
 
     protected Vector3 wander()
     {
-        Vector3 circleCenter = this.transform.forward.normalized * 10;
-
-        Vector3 displacement = new Vector3(0, 0, 1);
-        displacement *= 10;
-        float angle = Random.value * 2*Mathf.PI;
-        displacement.Set(Mathf.Cos(angle) * 10, 0, Mathf.Sin(angle) * 10);
-
-        Vector3 wanderForce = circleCenter + displacement;
-        return wanderForce;
+        wanderAngle += Random.Range(-.05f, .05f); 
+        Vector3 force = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle));
+        return force;
     }
 	
 	

@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112946}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: -.000419330172, y: 5.88677758e-05, z: 0}
+  m_LocalPosition: {x: -.000419330172, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,19 +86,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 3
-  maxForce: 12
+  safeDistance: .5
+  maxSpeed: 4
+  maxForce: 10
   mass: 1
   radius: 1
   seekWeight: 75
-  safeDistance: .100000001
-  avoidWeight: 120
-  separate: 1
-  separationWeight: 40
-  cohesionWeight: 40
-  alignmentWeight: 100
-  boundsWeight: 500
-  wanderWeight: 50
+  avoidWeight: 20
+  separate: .5
+  separationWeight: 3
+  cohesionWeight: 9
+  alignmentWeight: 7
+  boundsWeight: 8
+  wanderWeight: 7
+  flockRadius: 3
 --- !u!143 &14374582
 CharacterController:
   m_ObjectHideFlags: 1
@@ -149,43 +150,51 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separationWeight
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: boundsWeight
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: cohesionWeight
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: safeDistance
-      value: .100000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: alignmentWeight
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: avoidWeight
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: wanderWeight
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: separate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: maxSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: boundsWeight
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cohesionWeight
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: safeDistance
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: alignmentWeight
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: avoidWeight
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wanderWeight
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: separate
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: maxForce
-      value: 12
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: flockRadius
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -8,7 +8,6 @@ public class Flocker : Vehicle {
 	private Vector3 steeringForce;
     public Flock flock;
 	public float seekWeight = 75.0f;
-    public float safeDistance = 5.0f;
     public float avoidWeight = 100.0f;
 	public float separate = 1.0f;
 	public float separationWeight = 10.0f;
@@ -16,6 +15,7 @@ public class Flocker : Vehicle {
 	public float alignmentWeight = 1.0f;
     public float boundsWeight = 1.0f;
     public float wanderWeight = 20.0f;
+    public float flockRadius = 15.0f;
 	// Call Inherited Start and then do our own
 	override public void Start () {
 		base.Start();
@@ -25,24 +25,34 @@ public class Flocker : Vehicle {
 
 	protected override void CalcSteeringForces()
 	{
+        Vector3 temp;
 		//create zero vector to represent the seek force
 		steeringForce = new Vector3();
 
-		//call separation
-		steeringForce += separation (separate) * separationWeight;
-		steeringForce += alignment (flock.FlockDirection) * alignmentWeight;
-		steeringForce += cohesion (flock.Centroid) * cohesionWeight;
-
-		//call the wander force on a target - weight it
-		steeringForce += wander() * wanderWeight;
-      
+        //stay in bounds
+        temp = stayInBounds(50.0f, new Vector3(170, 0, 118)) * boundsWeight;
+        if(temp == Vector3.zero) //only if we're not trying to stay in bounds
+            steeringForce += wander() * wanderWeight;
+        steeringForce += temp;
+		//call flocking forces
+        temp = Vector3.zero;
+        //if(steeringForce == Vector3.zero) //not being redirected by the bounds
+        
+        temp = separation(separate) * separationWeight;
+        if (temp == Vector3.zero)
+        {
+            temp += cohesion(flock.Centroid) * cohesionWeight;
+        }
+		if(temp == Vector3.zero)
+            steeringForce += alignment(flock.FlockDirection) * alignmentWeight;
+        steeringForce += temp;
+        
 		//obstacle avoidance - weight that
-        steeringForce += avoid() * avoidWeight;
+        //steeringForce += avoid() * avoidWeight;
 		//apply each to the global steering force
 
 
-		//stay in bounds
-        steeringForce += stayInBounds(20.0f, new Vector3(170,0, 118)) * boundsWeight;
+		
 		//limit the steering force
 		steeringForce = Vector3.ClampMagnitude (steeringForce, maxForce);
 		//apply the force to acceleration
@@ -58,6 +68,8 @@ public class Flocker : Vehicle {
         List<GameObject> nearest = new List<GameObject>(); //holds the neighbors that are too close
         for (int i = 0; i < flock.NumFlockers; i++)
         {
+            if (flock.Flockers[i] == this) //don't steer away from yourself
+                continue;
             if (Vector3.SqrMagnitude(this.transform.position - flock.Flockers[i].transform.position) < separationDistance * separationDistance)
                 nearest.Add(flock.Flockers[i]);
         }
@@ -69,24 +81,30 @@ public class Flocker : Vehicle {
             if (Vector3.Dot(vecToCenter, this.transform.right) < 0)
                 desired += this.transform.right.normalized * maxSpeed;
         }
-        return desired.normalized;
+        return (desired.normalized*maxSpeed - this.transform.forward).normalized;
     }
 
     public Vector3 alignment(Vector3 alignVector)
     {
 
-        return (alignVector - this.transform.forward).normalized;
+        return (alignVector - this.transform.forward.normalized).normalized;
     }
     public Vector3 cohesion(Vector3 cohesionVector)
     {
-        return seek(cohesionVector).normalized;
+        if ((this.transform.position - flock.Centroid).sqrMagnitude > flockRadius * flockRadius)
+            return seek(cohesionVector).normalized;
+        else
+            return Vector3.zero;
     }
     public Vector3 stayInBounds(float radius, Vector3 center)
     {
-    
-        Vector3 desired = Vector3.zero;
-        if ((this.transform.position + this.transform.forward - center).sqrMagnitude > radius*radius)
-            desired += seek(center);
-        return desired;
+        if ((this.transform.position + this.transform.forward*maxSpeed - center).sqrMagnitude > radius * radius)
+        {   
+           
+            return this.transform.right.normalized;
+           
+        }
+        else
+            return Vector3.zero;
     }
 }

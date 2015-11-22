@@ -161,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 137911298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94, y: 5.01404953, z: 42.7999992}
+  m_LocalPosition: {x: 63.0999985, y: 5.01404953, z: 117.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 364245452}
@@ -2042,7 +2042,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1032426741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 204.172501, y: -95.4499969, z: 160.376892}
+  m_LocalPosition: {x: 168.199997, y: -95.4499969, z: 222.800003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1072349916}
@@ -2464,7 +2464,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 105.900002
+      value: 71.4000015
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2472,7 +2472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 41.2999992
+      value: 107.400002
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2582,7 +2582,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1955667440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 170.699997, y: .000252812169, z: 118.5}
+  m_LocalPosition: {x: 224.399994, y: .000252812169, z: 118.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2600,8 +2600,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCamera: {fileID: 1786653797}
   cameraID: 1
-  maxDeer: 6
-  minDeer: 4
+  maxDeer: 5
+  minDeer: 5
   numHerds: 1
   maxWolves: 0
   minWolves: 0

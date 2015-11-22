@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour {
         obstacles = new GameObject[20];
         for(int i = 0; i < 20; i++)
         {
-            pos = new Vector3( 171 + Random.Range(-10, 10), 0.0f, 118 +  Random.Range(-10, 10));
+            pos = new Vector3( 171 + Random.Range(-10, 10), 0.0f, 118 +  Random.Range(-50, 50));
             Quaternion rot = Quaternion.Euler(0.0f,Random.Range(0,180),0.0f);
             obstacles[i] = (GameObject)Instantiate(obstaclePrefab, pos, rot);
             obstacles[i].AddComponent<ObstacleScript>(); //so they have a radius
