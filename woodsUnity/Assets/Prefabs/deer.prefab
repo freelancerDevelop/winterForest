@@ -86,20 +86,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safeDistance: .5
+  safeDistance: 10
   maxSpeed: 4
-  maxForce: 10
+  maxForce: 6
   mass: 1
   radius: 1
   seekWeight: 75
   avoidWeight: 20
-  separate: .5
+  separate: 5
   separationWeight: 3
-  cohesionWeight: 9
-  alignmentWeight: 7
-  boundsWeight: 8
+  cohesionWeight: 5
+  alignmentWeight: 5
+  boundsWeight: 5
   wanderWeight: 7
-  flockRadius: 3
+  flockRadius: 20
 --- !u!143 &14374582
 CharacterController:
   m_ObjectHideFlags: 1
@@ -154,19 +154,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: boundsWeight
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cohesionWeight
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: safeDistance
-      value: .5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: alignmentWeight
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: avoidWeight
@@ -178,7 +178,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separate
-      value: .5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxSpeed
@@ -186,7 +186,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxForce
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
@@ -194,7 +194,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: flockRadius
-      value: 3
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

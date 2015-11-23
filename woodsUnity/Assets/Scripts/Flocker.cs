@@ -25,7 +25,7 @@ public class Flocker : Vehicle {
 
 	protected override void CalcSteeringForces()
 	{
-        Vector3 temp;
+        Vector3 temp = Vector3.zero;
 		//create zero vector to represent the seek force
 		steeringForce = new Vector3();
 
@@ -36,8 +36,6 @@ public class Flocker : Vehicle {
         steeringForce += temp;
 		//call flocking forces
         temp = Vector3.zero;
-        //if(steeringForce == Vector3.zero) //not being redirected by the bounds
-        
         temp = separation(separate) * separationWeight;
         if (temp == Vector3.zero)
         {
@@ -73,6 +71,7 @@ public class Flocker : Vehicle {
             if (Vector3.SqrMagnitude(this.transform.position - flock.Flockers[i].transform.position) < separationDistance * separationDistance)
                 nearest.Add(flock.Flockers[i]);
         }
+        Vector3 desired = Vector3.zero;
         for (int i = 0; i < nearest.Count; i++)
         {
             Vector3 vecToCenter = nearest[i].transform.position - this.transform.position;
@@ -81,7 +80,10 @@ public class Flocker : Vehicle {
             if (Vector3.Dot(vecToCenter, this.transform.right) < 0)
                 desired += this.transform.right.normalized * maxSpeed;
         }
-        return (desired.normalized*maxSpeed - this.transform.forward).normalized;
+        if (desired != Vector3.zero)
+            return (desired.normalized * maxSpeed - this.transform.forward).normalized;
+        else
+            return desired;
     }
 
     public Vector3 alignment(Vector3 alignVector)
@@ -101,7 +103,7 @@ public class Flocker : Vehicle {
         if ((this.transform.position + this.transform.forward*maxSpeed - center).sqrMagnitude > radius * radius)
         {   
            
-            return this.transform.right.normalized;
+            return this.transform.right - this.transform.forward*2;
            
         }
         else
