@@ -7,15 +7,15 @@ public class Flocker : Vehicle {
 
 	private Vector3 steeringForce;
     public Flock flock;
-	public float seekWeight = 75.0f;
-    public float avoidWeight = 100.0f;
-	public float separate = 1.0f;
-	public float separationWeight = 10.0f;
-	public float cohesionWeight = 1.0f;
-	public float alignmentWeight = 1.0f;
-    public float boundsWeight = 1.0f;
-    public float wanderWeight = 20.0f;
-    public float flockRadius = 15.0f;
+	public float seekWeight;
+    public float avoidWeight ;
+	public float separate ;
+	public float separationWeight ;
+	public float cohesionWeight;
+	public float alignmentWeight;
+    public float boundsWeight;
+    public float wanderWeight;
+    public float flockRadius;
 	// Call Inherited Start and then do our own
 	override public void Start () {
 		base.Start();
@@ -28,22 +28,20 @@ public class Flocker : Vehicle {
         Vector3 temp = Vector3.zero;
 		//create zero vector to represent the seek force
 		steeringForce = new Vector3();
-        
-        
+        //obstacle avoidance and staying in bounds gets priority
+        temp = steeringForce += avoid() * avoidWeight;
+        Debug.Log(temp);
         //stay in bounds comes next
         temp += stayInBounds(50.0f, new Vector3(170, 0, 118)) * boundsWeight;
         if(temp == Vector3.zero) //only if we're not trying to stay in bounds
           steeringForce += wander() * wanderWeight;
         steeringForce += temp;
 		//call flocking forces
-        temp = Vector3.zero;
+        //temp = Vector3.zero;
 
-        //obstacle avoidance and separation
-        // are more important visually than flocking, so they get priority
-
-        temp = steeringForce += avoid() * avoidWeight; //both of these are only non-zero conditionally
+        //both of these are only non-zero conditionally
         temp = separation(separate) * separationWeight;
-        temp += cohesion(flock.Centroid) * cohesionWeight; //only applied conditionally
+        temp += cohesion(flock.Centroid) * cohesionWeight; 
         steeringForce += alignment(flock.FlockDirection) * alignmentWeight; //applied every time called
         
         steeringForce += temp;
@@ -69,12 +67,14 @@ public class Flocker : Vehicle {
                 nearest.Add(flock.Flockers[i]);
         }
         Vector3 desired = Vector3.zero;
+
+        //remarkably similar to obstacle avoidance, hmm..
         for (int i = 0; i < nearest.Count; i++)
         {
             Vector3 vecToCenter = nearest[i].transform.position - this.transform.position;
             if (Vector3.Dot(vecToCenter, this.transform.right) > 0)
                 desired += this.transform.right.normalized * -1 * maxSpeed;
-            if (Vector3.Dot(vecToCenter, this.transform.right) < 0)
+            else
                 desired += this.transform.right.normalized * maxSpeed;
         }
         if (desired != Vector3.zero)
@@ -86,12 +86,14 @@ public class Flocker : Vehicle {
     public Vector3 alignment(Vector3 alignVector)
     {
 
-        return (alignVector - this.velocity);
+        return (alignVector - this.velocity); //the flock's velocity is our desired velocity so don't need
+                                                //more than this
     }
     public Vector3 cohesion(Vector3 cohesionVector)
     {
         if ((this.transform.position - flock.Centroid).sqrMagnitude > flockRadius * flockRadius)
-            return seek(cohesionVector).normalized;
+            return seek(cohesionVector).normalized; //pretty much the same as boundary checking but
+                                                    //with a moving center point
         else
             return Vector3.zero;
     }
@@ -100,7 +102,7 @@ public class Flocker : Vehicle {
         if ((this.transform.position - center).sqrMagnitude > radius * radius)
         {   
            
-            return seek(center);
+            return seek(center); //could be more sophisticated, but... meh
            
         }
         else

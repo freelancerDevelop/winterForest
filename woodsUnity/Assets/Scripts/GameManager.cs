@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour {
             Quaternion rot = Quaternion.Euler(0.0f,Random.Range(0,180),0.0f);
             obstacles[i] = (GameObject)Instantiate(obstaclePrefab, pos, rot);
             obstacles[i].AddComponent<ObstacleScript>(); //so they have a radius
+            obstacles[i].GetComponent<ObstacleScript>().Position = pos;
             
         }
 	}

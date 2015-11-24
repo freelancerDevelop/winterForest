@@ -4,7 +4,13 @@ using System.Collections;
 //use the Generic system here to make use of a Flocker list later on
 using System.Collections.Generic;
 
+/// <summary>
+/// Vehicle Class is the base class for all autonomous agents. 
+/// It holds the very basic behaviors, like seek, flee, evade, pursue, arrival,
+/// and obstacle avoidance.
+/// </summary>
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(BoxCollider))]
 
 abstract public class Vehicle : MonoBehaviour {
 
@@ -20,10 +26,11 @@ abstract public class Vehicle : MonoBehaviour {
 		get{return velocity;}
 	}
 
-	public float maxSpeed = 6;
-	public float maxForce = 12;
-	public float mass = 1;
-	public float radius = 1;
+    //lets them be accessed through the inspector for weighting
+	public float maxSpeed;
+	public float maxForce;
+	public float mass;
+	public float radius;
 
     protected GameManager gm;
 
@@ -35,6 +42,8 @@ abstract public class Vehicle : MonoBehaviour {
 		velocity = this.transform.forward;
 		charControl = this.GetComponent<CharacterController>();
         gm = GameObject.Find("gameManager").GetComponent<GameManager>();
+
+        //calculate the radius of the model by the dimensions of its box collider.
         float lenX = this.GetComponent<BoxCollider>().bounds.size.x;
         float lenZ = this.GetComponent<BoxCollider>().bounds.size.z;
         if (lenX < lenZ)
@@ -85,6 +94,8 @@ abstract public class Vehicle : MonoBehaviour {
 		return (seekVector - this.velocity);
 	}
 
+    //my implementation of avoid simply handles the whole array of objects on its own.
+    //in the future this may change
 	protected Vector3 avoid()
 	{
 		GameObject[] obstacles = gm.Obstacles;
@@ -93,32 +104,32 @@ abstract public class Vehicle : MonoBehaviour {
 		Vector3 desired = Vector3.zero;
 		for (int i = 0; i < obstacles.Length; i++ )
 		{
-			vecToCenter = obstacles[i].transform.position - this.transform.position + this.velocity;
+			vecToCenter = obstacles[i].GetComponent<ObstacleScript>().Position - this.transform.position;
 			rad = obstacles[i].GetComponent<ObstacleScript>().Radius;
 			if (vecToCenter.sqrMagnitude > Mathf.Pow(radius + rad + safeDistance,2))
 				continue;
-			if (Vector3.Dot(this.transform.forward,vecToCenter) <= 0)
+			if (Vector3.Dot(vecToCenter,this.transform.forward) < 0)
 				continue;
-            if (Mathf.Abs(Vector3.Dot(vecToCenter, this.transform.right)) > this.radius + rad + .1) //give ourselves a bit of a buffer
+            if (Mathf.Abs(Vector3.Dot(vecToCenter, this.transform.right)) > this.radius + rad + 4) //give ourselves a bit of a buffer
                 continue;
 
-
+            Debug.Log("collision firing");
             if (Vector3.Dot(vecToCenter, this.transform.right) > 0)
                 desired += this.transform.right * -1 * maxSpeed * safeDistance * safeDistance / vecToCenter.sqrMagnitude;
-            else if (Vector3.Dot(vecToCenter, this.transform.right) <= 0)
+            else 
                 desired += this.transform.right * maxSpeed * safeDistance * safeDistance / vecToCenter.sqrMagnitude;
             
 		}
 
-        return desired;
+        return desired*maxSpeed;
         
 	}
-
+    //kind of a brusque implementation of wander but it works
     protected Vector3 wander()
     {
-        float wanderAngle = Random.Range(0, Mathf.PI*2); 
-        Vector3 force = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle))*5;
-        return force + 5*this.transform.forward - this.velocity;
+        float wanderAngle = Random.Range(0, Mathf.PI*2); //any angle
+        Vector3 force = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle))*5; //vector in new direction of length 5
+        return force + 5*this.transform.forward - this.velocity; //move it 5 units in front of us, then use as a desired velocity
     }
 	
 	

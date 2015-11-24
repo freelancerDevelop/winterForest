@@ -1,0 +1,19 @@
+Margaret Dorsey
+Homework 5 : Flocking
+IGME 202.02 Fall 2015
+
+User functionality: None
+
+Reasoning behind design choices - I used a lot of the placeholders from my final project, so that I was almost working on that
+at the same time.
+
+The deer flock a little loosely to try to allow them to avoid obstacles, so there is a set radius from the centroid that they can deviate from without
+being corrected by the cohesion force. The trees actually aren'te ven objects at this point, they're all billboards, so they aren't
+being avoided. The obstacles are the little white chests.
+The weighting is still incredibly imperfect, I spent hours on it but at the end of the day I just ran out of time to continue fiddling.
+So sometimes strange things happen or they run into the chests.
+
+Requirements not completed: I did everything, but the weighting part is not great. 
+
+The flocking methods are all in Flocker.cs, the regular autonomous agent methods are in Vehicle.cs. 
+
