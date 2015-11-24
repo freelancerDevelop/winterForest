@@ -56,7 +56,8 @@ public class GameManager : MonoBehaviour {
 
 		}
 		//set camera to follow the first googlyeye guy, for now
-		myCamera.GetComponent<SmoothFollow> ().target = this.transform; 
+		myCamera.GetComponent<SmoothFollow> ().target = this.transform;
+        myCamera.enabled = true;
 
         obstacles = new GameObject[20];
         for(int i = 0; i < 20; i++)

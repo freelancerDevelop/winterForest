@@ -28,29 +28,26 @@ public class Flocker : Vehicle {
         Vector3 temp = Vector3.zero;
 		//create zero vector to represent the seek force
 		steeringForce = new Vector3();
-
-        //stay in bounds
-        temp = stayInBounds(50.0f, new Vector3(170, 0, 118)) * boundsWeight;
+        
+        
+        //stay in bounds comes next
+        temp += stayInBounds(50.0f, new Vector3(170, 0, 118)) * boundsWeight;
         if(temp == Vector3.zero) //only if we're not trying to stay in bounds
-            steeringForce += wander() * wanderWeight;
+          steeringForce += wander() * wanderWeight;
         steeringForce += temp;
 		//call flocking forces
         temp = Vector3.zero;
+
+        //obstacle avoidance and separation
+        // are more important visually than flocking, so they get priority
+
+        temp = steeringForce += avoid() * avoidWeight; //both of these are only non-zero conditionally
         temp = separation(separate) * separationWeight;
-        if (temp == Vector3.zero)
-        {
-            temp += cohesion(flock.Centroid) * cohesionWeight;
-        }
-		if(temp == Vector3.zero)
-            steeringForce += alignment(flock.FlockDirection) * alignmentWeight;
+        temp += cohesion(flock.Centroid) * cohesionWeight; //only applied conditionally
+        steeringForce += alignment(flock.FlockDirection) * alignmentWeight; //applied every time called
+        
         steeringForce += temp;
         
-		//obstacle avoidance - weight that
-        //steeringForce += avoid() * avoidWeight;
-		//apply each to the global steering force
-
-
-		
 		//limit the steering force
 		steeringForce = Vector3.ClampMagnitude (steeringForce, maxForce);
 		//apply the force to acceleration
@@ -81,7 +78,7 @@ public class Flocker : Vehicle {
                 desired += this.transform.right.normalized * maxSpeed;
         }
         if (desired != Vector3.zero)
-            return (desired.normalized * maxSpeed - this.transform.forward).normalized;
+            return (desired.normalized * maxSpeed - this.velocity);
         else
             return desired;
     }
@@ -89,7 +86,7 @@ public class Flocker : Vehicle {
     public Vector3 alignment(Vector3 alignVector)
     {
 
-        return (alignVector - this.transform.forward.normalized).normalized;
+        return (alignVector - this.velocity);
     }
     public Vector3 cohesion(Vector3 cohesionVector)
     {
@@ -100,10 +97,10 @@ public class Flocker : Vehicle {
     }
     public Vector3 stayInBounds(float radius, Vector3 center)
     {
-        if ((this.transform.position + this.transform.forward*maxSpeed - center).sqrMagnitude > radius * radius)
+        if ((this.transform.position - center).sqrMagnitude > radius * radius)
         {   
            
-            return this.transform.right - this.transform.forward*2;
+            return seek(center);
            
         }
         else

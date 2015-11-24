@@ -13,11 +13,12 @@ public class ObstacleScript : MonoBehaviour {
 
 	void Start()
     {
-        Vector3 size = this.GetComponent<BoxCollider>().size;
-        if (size.x < size.z)
-            radius = size.z / 2;
+        float lenX = this.GetComponent<BoxCollider>().bounds.size.x;
+        float lenZ = this.GetComponent<BoxCollider>().bounds.size.z;
+        if (lenX < lenZ)
+            radius = lenZ / 2;
         else
-            radius = size.x / 2;
+            radius = lenZ / 2;
     }
 }
 

@@ -13,7 +13,6 @@ abstract public class Vehicle : MonoBehaviour {
 	protected Vector3 acceleration;
 	protected Vector3 velocity;
 	//position,forward, right will be accessed through Transform component
-	protected Vector3 desired;
     public float safeDistance = 5.0f;
 
 	//flocking algorithms will need the velocity
@@ -25,7 +24,6 @@ abstract public class Vehicle : MonoBehaviour {
 	public float maxForce = 12;
 	public float mass = 1;
 	public float radius = 1;
-    protected float wanderAngle;
 
     protected GameManager gm;
 
@@ -35,9 +33,14 @@ abstract public class Vehicle : MonoBehaviour {
 	virtual public void Start(){
 		acceleration = Vector3.zero;
 		velocity = this.transform.forward;
-		desired = Vector3.zero;
 		charControl = this.GetComponent<CharacterController>();
         gm = GameObject.Find("gameManager").GetComponent<GameManager>();
+        float lenX = this.GetComponent<BoxCollider>().bounds.size.x;
+        float lenZ = this.GetComponent<BoxCollider>().bounds.size.z;
+        if (lenX < lenZ)
+            radius = lenZ / 2;
+        else
+            radius = lenZ / 2;
 	}
 
 	
@@ -51,6 +54,11 @@ abstract public class Vehicle : MonoBehaviour {
 		//limit velocity to max speed
 		velocity.y = 0;
 		velocity = Vector3.ClampMagnitude (velocity, maxSpeed);
+
+        if (this.transform.position.y > 1)
+            velocity.y = -1;
+        else
+            velocity.y = 0;
         
 		//move the character based on velocity
 		charControl.Move (velocity * Time.deltaTime);
@@ -74,7 +82,7 @@ abstract public class Vehicle : MonoBehaviour {
 		
 		seekVector = seekVector.normalized*maxSpeed;
 		seekVector.y = 0;
-		return (seekVector - this.velocity).normalized;
+		return (seekVector - this.velocity);
 	}
 
 	protected Vector3 avoid()
@@ -85,14 +93,16 @@ abstract public class Vehicle : MonoBehaviour {
 		Vector3 desired = Vector3.zero;
 		for (int i = 0; i < obstacles.Length; i++ )
 		{
-			vecToCenter = obstacles[i].transform.position - this.transform.position;
+			vecToCenter = obstacles[i].transform.position - this.transform.position + this.velocity;
 			rad = obstacles[i].GetComponent<ObstacleScript>().Radius;
-			if (vecToCenter.sqrMagnitude > Mathf.Pow(1.0f + safeDistance,2))
+			if (vecToCenter.sqrMagnitude > Mathf.Pow(radius + rad + safeDistance,2))
 				continue;
-			if (Vector3.Dot(vecToCenter, this.transform.forward) < 0)
+			if (Vector3.Dot(this.transform.forward,vecToCenter) <= 0)
 				continue;
-			if (Mathf.Abs(Vector3.Dot(vecToCenter, this.transform.right)) > this.radius + 1 + .1)
-				continue;
+            if (Mathf.Abs(Vector3.Dot(vecToCenter, this.transform.right)) > this.radius + rad + .1) //give ourselves a bit of a buffer
+                continue;
+
+
             if (Vector3.Dot(vecToCenter, this.transform.right) > 0)
                 desired += this.transform.right * -1 * maxSpeed * safeDistance * safeDistance / vecToCenter.sqrMagnitude;
             else if (Vector3.Dot(vecToCenter, this.transform.right) <= 0)
@@ -100,15 +110,15 @@ abstract public class Vehicle : MonoBehaviour {
             
 		}
 
-        return desired.normalized;
+        return desired;
         
 	}
 
     protected Vector3 wander()
     {
-        wanderAngle += Random.Range(-.05f, .05f); 
-        Vector3 force = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle));
-        return force;
+        float wanderAngle = Random.Range(0, Mathf.PI*2); 
+        Vector3 force = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle))*5;
+        return force + 5*this.transform.forward - this.velocity;
     }
 	
 	

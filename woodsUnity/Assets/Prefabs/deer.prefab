@@ -86,20 +86,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safeDistance: 10
-  maxSpeed: 4
-  maxForce: 6
-  mass: 1
-  radius: 1
+  safeDistance: 1
+  maxSpeed: 6
+  maxForce: 15
+  mass: 5
+  radius: 1.5
   seekWeight: 75
-  avoidWeight: 20
-  separate: 5
-  separationWeight: 3
-  cohesionWeight: 5
-  alignmentWeight: 5
+  avoidWeight: 15
+  separate: 2
+  separationWeight: 5
+  cohesionWeight: 7
+  alignmentWeight: 6
   boundsWeight: 5
-  wanderWeight: 7
-  flockRadius: 20
+  wanderWeight: 4
+  flockRadius: 3
 --- !u!143 &14374582
 CharacterController:
   m_ObjectHideFlags: 1
@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separationWeight
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: boundsWeight
@@ -158,35 +158,35 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cohesionWeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: safeDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: alignmentWeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: avoidWeight
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: wanderWeight
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: separate
-      value: 5
+      propertyPath: safeDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: maxSpeed
+      propertyPath: alignmentWeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: avoidWeight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wanderWeight
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: maxForce
+      propertyPath: separate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxForce
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
@@ -194,7 +194,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: flockRadius
-      value: 20
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: radius
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
