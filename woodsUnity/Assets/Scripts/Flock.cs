@@ -2,10 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Flock handles individual flocks
+/// </summary>
 public class Flock{
 
     
-    //attributes for flock
+    //****************
+    //Flock Attributes
+    //****************
     private Vector3 centroid;
     private Vector3 flockDirection;
     private int numFlockers;
@@ -19,7 +24,12 @@ public class Flock{
     private List<GameObject> flockers;
     public List<GameObject> Flockers { get { return flockers; } }
 
-    //constructor
+    /// <summary>
+    /// The constructor of the Flock class.
+    /// </summary>
+    /// <param name="numFlock"> Number of flockers in the flock</param>
+    /// <param name="centroidStart"> The starting position of the centroid</param>
+    /// <param name="prefab"> The prefab of the flocker</param>
     public Flock(int numFlock, Vector3 centroidStart, GameObject prefab)
     {
         centroid = Vector3.zero;
@@ -40,7 +50,9 @@ public class Flock{
 
 
 	
-
+    /// <summary>
+    /// CalcCentroid calculates the center of the flock and stores it in centroid.
+    /// </summary>
     public void CalcCentroid()
     {
         if (numFlockers == 0)
@@ -55,6 +67,9 @@ public class Flock{
 
     }
 
+    /// <summary>
+    /// CalcFlockDirection calculates the average velocity of the flock, normalizes it, and then stores it in flockDirection.
+    /// </summary>
     public void CalcFlockDirection()
     {
         if (numFlockers == 0)
