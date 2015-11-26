@@ -13,7 +13,7 @@ public class Flocker : Vehicle {
     //***************
     //Flock Attributes
     //***************
-	private Vector3 steeringForce;
+	protected Vector3 steeringForce;
     public Flock flock;
 
     //***************

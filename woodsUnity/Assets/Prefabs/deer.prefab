@@ -1,43 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &112946
+--- !u!1 &126408
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 447482}
-  - 33: {fileID: 3314266}
-  - 23: {fileID: 2308920}
-  - 65: {fileID: 6527706}
-  - 114: {fileID: 11404698}
-  - 143: {fileID: 14374582}
+  - 4: {fileID: 407574}
+  - 33: {fileID: 3370226}
+  - 23: {fileID: 2324702}
+  - 65: {fileID: 6567204}
+  - 143: {fileID: 14330652}
+  - 114: {fileID: 11430922}
   m_Layer: 0
   m_Name: deer
-  m_TagString: deer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &447482
+--- !u!4 &407574
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112946}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: -.000419330172, y: 0, z: 0}
+  m_GameObject: {fileID: 126408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2308920
+--- !u!23 &2324702
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112946}
+  m_GameObject: {fileID: 126408}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,62 +56,66 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3314266
+--- !u!33 &3370226
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112946}
+  m_GameObject: {fileID: 126408}
   m_Mesh: {fileID: 4300000, guid: b898041c1888a7d4e9c8e4f480b55612, type: 3}
---- !u!65 &6527706
+--- !u!65 &6567204
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112946}
+  m_GameObject: {fileID: 126408}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .0044321618, y: .0160251055, z: .0176370423}
-  m_Center: {x: .00372255943, y: .000193944201, z: -.0181665085}
---- !u!114 &11404698
+  m_Size: {x: .00443216134, y: .0160251055, z: .0176370423}
+  m_Center: {x: -.000472171814, y: -.00172967766, z: .00196754094}
+--- !u!114 &11430922
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112946}
+  m_GameObject: {fileID: 126408}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safeDistance: 2
   maxSpeed: 6
-  maxForce: 15
-  mass: 5
-  radius: 1.5
-  seekWeight: 75
-  avoidWeight: 8
-  separate: 4
-  separationWeight: 5
-  cohesionWeight: 6
-  alignmentWeight: 5
-  boundsWeight: 5
-  wanderWeight: 6
-  flockRadius: 5
---- !u!143 &14374582
+  maxForce: 10
+  mass: 1
+  radius: 0
+  safeDistance: 4
+  arrivalDistance: 3
+  pursueTimestep: 1
+  evadeTimestep: 1
+  seekWeight: 1
+  avoidWeight: 1
+  separateDistance: 1
+  separationWeight: 1
+  cohesionWeight: 1
+  alignmentWeight: 1
+  boundsWeight: 1
+  wanderWeight: 1
+  flockRadius: 2
+  regroupRadius: 8
+--- !u!143 &14330652
 CharacterController:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112946}
+  m_GameObject: {fileID: 126408}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: .0164129939
-  m_Radius: .00593864033
+  m_Height: .0321293324
+  m_Radius: .0107860621
   m_SlopeLimit: 45
   m_StepOffset: .300000012
   m_SkinWidth: .0799999982
@@ -125,86 +129,18 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: m_LocalScale.x
-      value: 100
+      propertyPath: arrivalDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_TagString
-      value: deer
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalRotation.y
+      propertyPath: pursueTimestep
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: m_LocalRotation.w
-      value: -1.62920685e-07
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: separationWeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: boundsWeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: cohesionWeight
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: safeDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: alignmentWeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: avoidWeight
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: wanderWeight
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: separate
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: maxSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: maxForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: flockRadius
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: mass
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: radius
-      value: 1.5
+      propertyPath: evadeTimestep
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 112946}
+  m_RootGameObject: {fileID: 126408}
   m_IsPrefabParent: 1

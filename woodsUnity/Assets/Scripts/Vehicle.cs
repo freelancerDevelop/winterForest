@@ -171,7 +171,7 @@ abstract public class Vehicle : MonoBehaviour {
     {
         Vector3 desired = destination - this.transform.position; //the straight line between us and our target
 
-        if(desired.sqrMagnitude > arrivalDistance*arrivalDistance) //we don't need no square roots!
+        if(desired.sqrMagnitude < arrivalDistance*arrivalDistance) //we don't need no square roots!
         {
             float scale = map(desired.sqrMagnitude, 0, arrivalDistance * arrivalDistance, 0, maxSpeed);
             desired = desired.normalized * scale;

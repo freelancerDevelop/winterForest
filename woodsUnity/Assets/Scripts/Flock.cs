@@ -39,7 +39,7 @@ public class Flock{
 
         for (int i = 0; i < numFlock; i++)
         {
-            flockers.Add((GameObject) Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 0, Random.Range(0, 6)), Quaternion.identity));
+            flockers.Add((GameObject) Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 0.97f, Random.Range(0, 6)), Quaternion.identity));
             flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
 
         }

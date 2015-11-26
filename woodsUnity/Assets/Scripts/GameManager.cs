@@ -86,19 +86,20 @@ public class GameManager : MonoBehaviour {
 
 		for (int i = 0; i < numHerds; i++) {
 			//make the herds
-            herds.Add(new Flock(Random.Range(minDeer,maxDeer+1),deerStart[i],deerPrefab));
+            herds.Add(new Flock(Random.Range(minDeer,maxDeer+1),Vector3.zero,deerPrefab));
 
 		}
 
 		//set camera to follow the game manager
-		myCamera.GetComponent<SmoothFollow> ().target = this.transform;
+		myCamera.GetComponent<SmoothFollow>().target = this.transform;
         myCamera.enabled = true;
 
+        //only here for testing purposes
         Vector3 pos; //no need to reallocate this every time through the loop
         obstacles = new GameObject[numTrees];
         for(int i = 0; i < numTrees; i++)
         {
-            pos = new Vector3( 171 + Random.Range(-10, 10), 0.0f, 118 +  Random.Range(-50, 50));
+            pos = new Vector3( Random.Range(0, 50), 0.0f, Random.Range(0, 50));
             Quaternion rot = Quaternion.Euler(0.0f,Random.Range(0,180),0.0f);
             obstacles[i] = (GameObject)Instantiate(obstaclePrefab, pos, rot);
             obstacles[i].AddComponent<ObstacleScript>(); //so they have a radius
@@ -143,8 +144,11 @@ public class GameManager : MonoBehaviour {
     /// </summary>
 	void Update () {
 
-        wolves.CalcCentroid();
-        wolves.CalcFlockDirection();
+        if (wolves.NumFlockers != 0)
+        {
+            wolves.CalcCentroid();
+            wolves.CalcFlockDirection();
+        }
 
         foreach (Flock flock in herds)
         {

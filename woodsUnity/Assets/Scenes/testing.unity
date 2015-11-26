@@ -96,6 +96,7 @@ GameObject:
   - 20: {fileID: 266223612}
   - 124: {fileID: 266223616}
   - 92: {fileID: 266223615}
+  - 114: {fileID: 266223614}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -149,6 +150,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1697162557}
   m_RootOrder: 0
+--- !u!114 &266223614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 266223611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a25e00216e76224a9e5f76965404190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  distance: 3
+  height: 1.5
+  heightDamping: 2
+  positionDamping: 2
+  rotationDamping: 2
 --- !u!92 &266223615
 Behaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +303,7 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 8d3d831a12b0e2044ac3e80a0d1dd738, type: 2}
-  m_TreeDistance: 5000
+  m_TreeDistance: 2000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
@@ -342,7 +360,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1697162556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 213.787933, y: 17.9261475, z: 185.633804}
+  m_LocalPosition: {x: 0, y: 0, z: 13.3999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 266223613}
@@ -360,26 +378,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCamera: {fileID: 266223612}
-  cameraID: 0
+  cameraID: 1
   flowFieldDiv: 0
   maxDeer: 1
   minDeer: 1
-  numHerds: 0
+  numHerds: 1
   maxWolves: 0
   minWolves: 0
   numHerders: 0
   numHunters: 0
-  numTrees: 0
+  numTrees: 4
   treeWeight1: 0
   treeWeight2: 0
   treeWeight3: 0
   treePrefab1: {fileID: 0}
   treePrefab2: {fileID: 0}
   treePrefab3: {fileID: 0}
-  deerPrefab: {fileID: 112946, guid: 80881a157e1523e419c7ee86395d216e, type: 2}
+  deerPrefab: {fileID: 126408, guid: 8a3f2ad8226fedc40a30e3494af168e8, type: 2}
   wolfPrefab: {fileID: 0}
   terrain: {fileID: 664926140}
-  obstaclePrefab: {fileID: 130780, guid: 8698982a333309d48b47865ce8263e26, type: 2}
+  obstaclePrefab: {fileID: 100812, guid: 4c66505b534d5a74aa4776a937e948b0, type: 2}
 --- !u!1 &1926166390
 GameObject:
   m_ObjectHideFlags: 0

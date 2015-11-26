@@ -22,6 +22,8 @@ public class deerScript : Flocker {
     /// </summary>
     protected override void calcSteeringForces()
     {
+        steeringForce = Vector3.zero;
+        steeringForce += arrive(gm.Obstacles[0].transform.position);
         base.calcSteeringForces();
     }	
 
