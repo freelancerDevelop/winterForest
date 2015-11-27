@@ -26,6 +26,7 @@ abstract public class Vehicle : MonoBehaviour {
     public float arrivalDistance; //how far away should we start slowing down?
     public float pursueTimestep; //how many frames ahead will we project?
     public float evadeTimestep; //ditto above for evade
+    private float wanderAngle;
 
 
     protected GameManager gm;
@@ -156,7 +157,11 @@ abstract public class Vehicle : MonoBehaviour {
     /// <returns>A force vector that will randomly change the direction of travel.</returns>
     protected Vector3 wander()
     {
-        float wanderAngle = Random.Range(0, Mathf.PI*2); //any angle
+        wanderAngle += Random.Range(-.6f, .6f); //increment the angle try to keep it smooth
+        if (wanderAngle > Mathf.PI * 2)
+            wanderAngle -= Mathf.PI * 2;
+        else if (wanderAngle < 0)
+            wanderAngle += Mathf.PI * 2;
         Vector3 force = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle))*5; //vector in new direction of length 5
         return force + 5*this.transform.forward - this.velocity; //move it 5 units in front of us, then use as a desired velocity
     }
@@ -173,6 +178,7 @@ abstract public class Vehicle : MonoBehaviour {
 
         if(desired.sqrMagnitude < arrivalDistance*arrivalDistance) //we don't need no square roots!
         {
+            Debug.Log("arriving");
             float scale = map(desired.sqrMagnitude, 0, arrivalDistance * arrivalDistance, 0, maxSpeed);
             desired = desired.normalized * scale;
         }
@@ -180,7 +186,7 @@ abstract public class Vehicle : MonoBehaviour {
         {
             desired = desired.normalized * maxSpeed;
         }
-        return desired;
+        return desired-this.velocity;
     }
     /// <summary>
     /// evade uses the velocity of a threat to more intelligently flee from them by 

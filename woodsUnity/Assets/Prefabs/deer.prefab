@@ -50,7 +50,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -86,23 +88,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 6
-  maxForce: 10
+  maxSpeed: 3
+  maxForce: 5
   mass: 1
-  radius: 0
+  radius: 2
   safeDistance: 4
-  arrivalDistance: 3
+  arrivalDistance: 8
   pursueTimestep: 1
   evadeTimestep: 1
   seekWeight: 1
   avoidWeight: 1
   separateDistance: 1
   separationWeight: 1
-  cohesionWeight: 1
+  cohesionWeight: .5
   alignmentWeight: 1
   boundsWeight: 1
   wanderWeight: 1
-  flockRadius: 2
+  flockRadius: 10
   regroupRadius: 8
 --- !u!143 &14330652
 CharacterController:
@@ -130,7 +132,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: arrivalDistance
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pursueTimestep
@@ -139,6 +141,30 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: evadeTimestep
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: safeDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: flockRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cohesionWeight
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
