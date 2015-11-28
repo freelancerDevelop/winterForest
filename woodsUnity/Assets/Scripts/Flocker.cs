@@ -106,7 +106,7 @@ public class Flocker : Vehicle {
     public Vector3 cohesion(Vector3 cohesionVector)
     {
         if ((this.transform.position - flock.Centroid).sqrMagnitude > flockRadius * flockRadius)
-            return seek(cohesionVector).normalized; //pretty much the same as boundary checking but
+            return seek(cohesionVector); //pretty much the same as boundary checking but
                                                     //with a moving center point
         else
             return Vector3.zero;

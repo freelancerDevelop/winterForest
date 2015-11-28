@@ -380,8 +380,8 @@ MonoBehaviour:
   myCamera: {fileID: 266223612}
   cameraID: 1
   flowFieldDiv: 0
-  maxDeer: 1
-  minDeer: 1
+  maxDeer: 3
+  minDeer: 3
   numHerds: 1
   maxWolves: 0
   minWolves: 0
