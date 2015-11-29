@@ -22,16 +22,25 @@ public class deerScript : Flocker {
     /// </summary>
     protected override void calcSteeringForces()
     {
+        Vector3 temp = Vector3.zero; //for prioritizing
         steeringForce = Vector3.zero;
         steeringForce += wander()*wanderWeight;
         foreach(GameObject obstacle in gm.Obstacles)
         {
-            steeringForce += avoid(obstacle)*avoidWeight;
+            temp += avoid(obstacle)*avoidWeight;
         }
-        steeringForce += stayInBounds(25.0f, new Vector3(25.0f, 0.0f, 25.0f))*boundsWeight;
-        steeringForce += cohesion(flock.Centroid) * cohesionWeight;
-        steeringForce += alignment(flock.FlockDirection) * alignmentWeight;
-        steeringForce += separation(separateDistance) * separationWeight;
+        temp += stayInBounds(25.0f, new Vector3(25.0f, 0.0f, 25.0f))*boundsWeight;
+        steeringForce += temp;
+        if (temp == Vector3.zero)
+        {
+            temp += cohesion(flock.Centroid) * cohesionWeight; //only non-zero conditionally
+            if(temp == Vector3.zero)
+                temp += separation(separateDistance) * separationWeight; //also only non-zero conditionally
+            //if(temp == Vector3.zero)
+                temp += alignment(flock.FlockDirection) * alignmentWeight; //will always apply a force if called
+            
+        }
+        steeringForce += temp;
         base.calcSteeringForces();
     }	
 

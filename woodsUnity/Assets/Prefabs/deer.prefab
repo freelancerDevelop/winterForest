@@ -50,9 +50,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -88,23 +86,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 3
-  maxForce: 5
+  maxSpeed: 5
+  maxForce: 7
   mass: 1
   radius: 2
   safeDistance: 4
   arrivalDistance: 8
   pursueTimestep: 1
   evadeTimestep: 1
-  seekWeight: 1
-  avoidWeight: 1
+  seekWeight: 0
+  avoidWeight: 6
   separateDistance: 1
-  separationWeight: 1
-  cohesionWeight: .5
-  alignmentWeight: 1
-  boundsWeight: 1
-  wanderWeight: 1
-  flockRadius: 10
+  separationWeight: 6
+  cohesionWeight: 5
+  alignmentWeight: 2
+  boundsWeight: 6
+  wanderWeight: 3
+  flockRadius: 7
   regroupRadius: 8
 --- !u!143 &14330652
 CharacterController:
@@ -152,18 +150,46 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: flockRadius
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cohesionWeight
-      value: .5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: maxForce
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: maxForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: boundsWeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: alignmentWeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: separationWeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: separateDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: seekWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: avoidWeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wanderWeight
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []

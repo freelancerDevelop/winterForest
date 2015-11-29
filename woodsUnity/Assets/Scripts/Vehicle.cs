@@ -69,11 +69,7 @@ abstract public class Vehicle : MonoBehaviour {
 		velocity.y = 0;
 		velocity = Vector3.ClampMagnitude (velocity, maxSpeed);
 
-        //in case something strange happened, return to the ground
-        if (this.transform.position.y > 1)
-            velocity.y = -1;
-        else
-            velocity.y = 0;
+        
         
 		//move the character based on velocity
 		charControl.Move (velocity * Time.deltaTime);
