@@ -151,8 +151,23 @@ public class Flocker : Vehicle {
     /// </summary>
     /// <param name="leader">The vehicle being followed as a leader</param>
     /// <returns>the force vector that will produce leader following behavior</returns>
-    public Vector3 followLeader(Vehicle leader)
+    public Vector3 followLeader(Vehicle leader, float followDistance)
     {
-        return Vector3.zero;
+        if (this == leader) //don't follow yourself
+            return Vector3.zero;
+        Vector3 desired = Vector3.zero;
+
+        if((leader.transform.position - leader.transform.forward * followDistance).sqrMagnitude < followDistance*followDistance)
+        {
+            desired += evade(leader);
+        }
+        else
+        //we're not in the way, so follow
+        {
+            desired += arrive(leader.transform.position - leader.transform.forward * followDistance);
+            desired += separation(separateDistance);
+        }
+
+        return desired;
     }
 }

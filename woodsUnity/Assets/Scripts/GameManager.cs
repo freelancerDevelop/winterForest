@@ -20,9 +20,8 @@ public class GameManager : MonoBehaviour {
     //Flow Field
     //*************************
 	private Vector3[,] flowField;
-    public int flowFieldDiv; //how many divisions in our flow field?
-    private float terrainWidth; //need the dimensions of the terrain to make the flow field
-    private float terrainHeight;
+    private int terrainWidth; //z //need the dimensions of the terrain to make the flow field
+    private int terrainLength; //x
 
     //*************************
     //Flocks
@@ -76,11 +75,12 @@ public class GameManager : MonoBehaviour {
             numHerds = 9;
 
         //initializing everything
+        terrainWidth = (int)terrain.terrainData.size.z;
+        terrainLength = (int)terrain.terrainData.size.x;
         deerStart = new List<Vector3>();
-        flowField = new Vector3[flowFieldDiv, flowFieldDiv];
+        flowField = new Vector3[terrainLength, terrainWidth];
         createFlowField();
         determineStartingLocations();
-        placeTrees();
         wolves = new Flock(Random.Range(minWolves, maxWolves+1), wolfStart, wolfPrefab);
         herds = new List<Flock>();      
 
@@ -109,33 +109,80 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// createFlowField will use hard coded data to generate a flow field 
-    /// used by the deer. Vectors will point towards areas of low tree density, and will have magnitude proportional to tree
+	/// createFlowField will use the waypoints to generate a flow field 
+    /// used by the deer and the trees. Vectors will point towards areas of low tree density, and will have magnitude proportional to tree
     /// density in a given sector. Clearings will have 0 vectors associated with them. This flow field will also be used to
-    /// place trees in the environment
+    /// place trees in the environment, with them being in general farther away from the center of waypoints and nonexistent
+    /// within the radius of the waypoints.
     /// 
-    /// Higher dimension flow fields will be, in general, more accurate.
 	/// </summary>
     void createFlowField()
     {
+        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("waypoint"); //get all the waypoints
+        Vector2[] waypointLocs = new Vector2[waypoints.Length];
+        for (int i = 0; i < waypoints.Length; i++)
+        {
+            waypointLocs[i] = new Vector2((int)waypoints[i].transform.position.x,(int) waypoints[i].transform.position.y);
+        }
+
+        for(int i = 0; i < terrainLength; i++)
+        {
+            for(int j = 0; j < terrainWidth; j++)
+            {
+                Vector2 pos = new Vector2(i,j);
+                int nearest = getNearest(pos, waypointLocs);
+                if((waypointLocs[i]-pos).sqrMagnitude > Mathf.Pow(waypoints[i].GetComponent<waypointScript>().radius,2.0f))
+                {
+                    flowField[i, j] = Vector3.zero; //we're inside a meadow, so 0
+                }
+                else
+                {
+                    //need a vector pointing back towards the nearest point, with magnitude scaled based on distance
+                    Vector3 fieldVec = new Vector3(waypointLocs[i].x, 0, waypointLocs[i].y) - new Vector3(pos.x, 0, pos.y);
+                    fieldVec.Normalize();
+                    fieldVec *= ((waypointLocs[i] - pos).magnitude - waypoints[i].GetComponent<waypointScript>().radius) / 3.0f; //scale based on how far away we are
+                    flowField[i, j] = fieldVec;
+                }
+            }
+
+        }
 
     }
+
     /// <summary>
-    /// placeTrees will use the flow field to place trees appropriately throughout the environment, placing more trees in 
-    /// areas with higher magnitude vectors. Will use the weights provided in the inspector to decide on the proportion of different
-    /// types of trees.
+    /// Gets the index of the nearest point in the array to the position
     /// </summary>
-    void placeTrees()
+    /// <param name="position"> The position that needs a nearest point</param>
+    /// <param name="points"> An array of 2D points</param>
+    /// <returns> the index of the nearest point</returns>
+    private int getNearest(Vector2 position, Vector2[] points)
     {
+        int nearest = 0;
+        for (int i = 1; i < points.Length; i++)
+        {
+            //closer than our current nearest point
+            if ((points[i] - position).sqrMagnitude < (points[nearest] - position).sqrMagnitude)
+                nearest = i;
+        }
+        return nearest;
+    }
 
+    /// <summary>
+    /// getFlow returns vectors out of the flow field
+    /// </summary>
+    /// <param name="indexPosition">The position of the desired flow vector, in index form</param>
+    /// <returns>A force vector from the flow field</returns>
+    Vector3 getFlow(int xIndex, int zIndex)
+    {
+        return flowField[xIndex, zIndex];
     }
     /// <summary>
-    /// Uses the flow field to determine where the deer flocks and the pack of wolves
+    /// Uses the waypoints to determine where the deer flocks and the pack of wolves
     /// should start.
     /// </summary>
     void determineStartingLocations()
     {
-
+        
 
     }
     /// <summary>
