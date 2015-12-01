@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour {
     public int minWolves; //minimum number of wolves in the pack
     public int numHerders; //number of wolves with herding behavior
     public int numHunters; //number of wolves with hunting behavior
-    public int numTrees; //number of trees that will be generated in the scene. 
     public float treeWeight1; //how many of the trees should be of type 1,2,3? Weighted relative to the sum of all 3 weight values.
     public float treeWeight2;
     public float treeWeight3;
@@ -56,13 +55,12 @@ public class GameManager : MonoBehaviour {
     public GameObject deerPrefab; //for deer and wolves
     public GameObject wolfPrefab;
     public Terrain terrain;
-    public GameObject obstaclePrefab; //will be taken out after HW5
 
     //*************************
     //Obstacles
     //*************************
-	private GameObject[] obstacles;
-    public GameObject[] Obstacles
+	private List<GameObject> obstacles;
+    public List<GameObject> Obstacles
     {
         get { return obstacles; }
     }
@@ -77,6 +75,7 @@ public class GameManager : MonoBehaviour {
         //initializing everything
         terrainWidth = (int)terrain.terrainData.size.z;
         terrainLength = (int)terrain.terrainData.size.x;
+        obstacles = new List<GameObject>();
         deerStart = new List<Vector3>();
         flowField = new Vector3[terrainLength, terrainWidth];
         createFlowField();
@@ -93,19 +92,7 @@ public class GameManager : MonoBehaviour {
 		//set camera to follow the game manager
 		myCamera.GetComponent<SmoothFollow>().target = this.transform;
         myCamera.enabled = true;
-
-        //only here for testing purposes
-        Vector3 pos; //no need to reallocate this every time through the loop
-        obstacles = new GameObject[numTrees];
-        for(int i = 0; i < numTrees; i++)
-        {
-            pos = new Vector3( Random.Range(0, 50), 0.0f, Random.Range(0, 50));
-            Quaternion rot = Quaternion.Euler(0.0f,Random.Range(0,180),0.0f);
-            obstacles[i] = (GameObject)Instantiate(obstaclePrefab, pos, rot);
-            obstacles[i].AddComponent<ObstacleScript>(); //so they have a radius
-            
-            
-        }
+        
 	}
 
 	/// <summary>
@@ -131,20 +118,48 @@ public class GameManager : MonoBehaviour {
             {
                 Vector2 pos = new Vector2(i,j);
                 int nearest = getNearest(pos, waypointLocs);
-                if((waypointLocs[i]-pos).sqrMagnitude > Mathf.Pow(waypoints[i].GetComponent<waypointScript>().radius,2.0f))
+                if((waypointLocs[nearest]-pos).sqrMagnitude > Mathf.Pow(waypoints[nearest].GetComponent<waypointScript>().radius,2.0f))
                 {
                     flowField[i, j] = Vector3.zero; //we're inside a meadow, so 0
                 }
                 else
                 {
                     //need a vector pointing back towards the nearest point, with magnitude scaled based on distance
-                    Vector3 fieldVec = new Vector3(waypointLocs[i].x, 0, waypointLocs[i].y) - new Vector3(pos.x, 0, pos.y);
+                    Vector3 fieldVec = new Vector3(waypointLocs[nearest].x, 0, waypointLocs[nearest].y) - new Vector3(pos.x, 0, pos.y);
                     fieldVec.Normalize();
-                    fieldVec *= ((waypointLocs[i] - pos).magnitude - waypoints[i].GetComponent<waypointScript>().radius) / 3.0f; //scale based on how far away we are
+                    fieldVec *= ((waypointLocs[nearest] - pos).magnitude - waypoints[nearest].GetComponent<waypointScript>().radius) / 3.0f; //scale based on how far away we are
                     flowField[i, j] = fieldVec;
                 }
             }
 
+        }
+
+        placeTrees(); //place all our trees! How exciting.
+
+    }
+    private void placeTrees()
+    {
+        GameObject tree;
+        float rand;
+        for(int i = 0; i < terrainLength; i++)
+        {
+            for(int j = 0; j < terrainWidth; j++)
+            {
+                if(flowField[i,j] == Vector3.zero)
+                {
+                    continue; //don't put a tree in a clearing, dummy!
+                }
+                else
+                {
+                    rand = Random.Range(0.0f, 10000.0f);
+                    if (rand < flowField[i, j].sqrMagnitude)
+                    {
+                        tree = (GameObject)GameObject.Instantiate(treePrefab1, new Vector3(i, 0, j), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                        tree.AddComponent<ObstacleScript>(); //for radius
+                        obstacles.Add(tree);
+                    }
+                }
+            }
         }
 
     }

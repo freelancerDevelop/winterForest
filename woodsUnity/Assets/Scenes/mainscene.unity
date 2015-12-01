@@ -2362,11 +2362,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 494682449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 116.599998, y: 0, z: 124.199997}
+  m_LocalPosition: {x: 92.3000031, y: 0, z: 124.199997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &711296122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,7 +2478,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &869275105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,7 +2520,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &961658479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,7 +2622,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1253218668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,7 +2848,7 @@ Transform:
   - {fileID: 1984068073}
   - {fileID: 103650979}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!114 &1955667442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2862,7 +2862,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCamera: {fileID: 1786653797}
   cameraID: 1
-  flowFieldDiv: 0
   maxDeer: 3
   minDeer: 5
   numHerds: 1
@@ -2870,17 +2869,15 @@ MonoBehaviour:
   minWolves: 0
   numHerders: 0
   numHunters: 0
-  numTrees: 0
   treeWeight1: 0
   treeWeight2: 0
   treeWeight3: 0
-  treePrefab1: {fileID: 0}
+  treePrefab1: {fileID: 145572, guid: 445b2fc75366ea443a7a34925e30da39, type: 2}
   treePrefab2: {fileID: 0}
   treePrefab3: {fileID: 0}
-  deerPrefab: {fileID: 112946, guid: 80881a157e1523e419c7ee86395d216e, type: 2}
+  deerPrefab: {fileID: 126408, guid: 8a3f2ad8226fedc40a30e3494af168e8, type: 2}
   wolfPrefab: {fileID: 0}
   terrain: {fileID: 711296124}
-  obstaclePrefab: {fileID: 130780, guid: 8698982a333309d48b47865ce8263e26, type: 2}
 --- !u!1 &1984068072
 GameObject:
   m_ObjectHideFlags: 0
