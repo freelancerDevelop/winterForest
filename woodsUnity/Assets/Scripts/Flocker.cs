@@ -143,7 +143,7 @@ public class Flocker : Vehicle {
     /// <returns>the vector from the flow field corresponding to the flocker's current position</returns>
     public Vector3 flowFollow()
     {
-        return Vector3.zero;
+        return gm.getFlow((int)this.transform.position.x, (int)this.transform.position.z);
     }
     /// <summary>
     /// followLeader calculates a point behind the flock's leader that they will all try to converge upon. it will
@@ -165,7 +165,7 @@ public class Flocker : Vehicle {
         //we're not in the way, so follow
         {
             desired += arrive(leader.transform.position - leader.transform.forward * followDistance);
-            desired += separation(separateDistance);
+            //desired += separation(separateDistance)*separationWeight;
         }
 
         return desired;

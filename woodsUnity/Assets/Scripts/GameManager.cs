@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour {
         Vector2[] waypointLocs = new Vector2[waypoints.Length];
         for (int i = 0; i < waypoints.Length; i++)
         {
-            waypointLocs[i] = new Vector2((int)waypoints[i].transform.position.x,(int) waypoints[i].transform.position.y);
+            waypointLocs[i] = new Vector2((int)waypoints[i].transform.position.x,(int) waypoints[i].transform.position.z);
         }
 
         for(int i = 0; i < terrainLength; i++)
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour {
             {
                 Vector2 pos = new Vector2(i,j);
                 int nearest = getNearest(pos, waypointLocs);
-                if((waypointLocs[nearest]-pos).sqrMagnitude > Mathf.Pow(waypoints[nearest].GetComponent<waypointScript>().radius,2.0f))
+                if((waypointLocs[nearest]-pos).sqrMagnitude < Mathf.Pow(waypoints[nearest].GetComponent<waypointScript>().radius,2.0f))
                 {
                     flowField[i, j] = Vector3.zero; //we're inside a meadow, so 0
                 }
@@ -130,6 +130,8 @@ public class GameManager : MonoBehaviour {
                     fieldVec *= ((waypointLocs[nearest] - pos).magnitude - waypoints[nearest].GetComponent<waypointScript>().radius) / 3.0f; //scale based on how far away we are
                     flowField[i, j] = fieldVec;
                 }
+
+                Debug.DrawRay(new Vector3(i, 0, j), flowField[i, j], Color.red, 600.0f, false); // 10 minutes of flow field
             }
 
         }
@@ -187,9 +189,12 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     /// <param name="indexPosition">The position of the desired flow vector, in index form</param>
     /// <returns>A force vector from the flow field</returns>
-    Vector3 getFlow(int xIndex, int zIndex)
+    public Vector3 getFlow(int xIndex, int zIndex)
     {
-        return flowField[xIndex, zIndex];
+        if (xIndex >= 0 && zIndex >= 0 && xIndex < terrainLength && zIndex < terrainWidth)
+            return flowField[xIndex, zIndex];
+        else
+            return Vector3.zero;
     }
     /// <summary>
     /// Uses the waypoints to determine where the deer flocks and the pack of wolves
