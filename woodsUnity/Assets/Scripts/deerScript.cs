@@ -41,6 +41,7 @@ public class deerScript : Flocker {
             
         }
         steeringForce += temp;
+        steeringForce += flowFollow();
         base.calcSteeringForces();
     }	
 

@@ -1,43 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &126408
+--- !u!1 &172626
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 407574}
-  - 33: {fileID: 3370226}
-  - 23: {fileID: 2324702}
-  - 65: {fileID: 6567204}
-  - 143: {fileID: 14330652}
-  - 114: {fileID: 11430922}
+  - 4: {fileID: 423702}
+  - 33: {fileID: 3312290}
+  - 65: {fileID: 6522260}
+  - 23: {fileID: 2387182}
+  - 143: {fileID: 14318222}
+  - 114: {fileID: 11425090}
   m_Layer: 0
-  m_Name: deer
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &407574
+--- !u!4 &423702
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
+  m_GameObject: {fileID: 172626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2324702
+--- !u!23 &2387182
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
+  m_GameObject: {fileID: 172626}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -49,73 +49,76 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
+  m_PreserveUVs: 1
   m_ImportantGI: 0
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3370226
+--- !u!33 &3312290
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
-  m_Mesh: {fileID: 4300000, guid: b898041c1888a7d4e9c8e4f480b55612, type: 3}
---- !u!65 &6567204
+  m_GameObject: {fileID: 172626}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &6522260
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
+  m_GameObject: {fileID: 172626}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .00443216134, y: .0160251055, z: .0176370423}
-  m_Center: {x: -.000472171814, y: -.00172967766, z: .00196754094}
---- !u!114 &11430922
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11425090
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
+  m_GameObject: {fileID: 172626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
+  m_Script: {fileID: 11500000, guid: 2de401bf82c12264a8001a9d568dc8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
-  maxForce: 7
+  maxForce: 5
   mass: 1
-  radius: 2
-  safeDistance: 4
-  arrivalDistance: 8
-  pursueTimestep: 1
-  evadeTimestep: 1
+  radius: 3
+  safeDistance: 0
+  arrivalDistance: 0
+  pursueTimestep: 0
+  evadeTimestep: 0
   seekWeight: 0
-  avoidWeight: 6
-  separateDistance: 1
-  separationWeight: 6
-  cohesionWeight: 5
-  alignmentWeight: 8
-  boundsWeight: 6
-  wanderWeight: 3
-  flockRadius: 8
-  regroupRadius: 8
---- !u!143 &14330652
+  avoidWeight: 0
+  separateDistance: 15
+  separationWeight: 100
+  cohesionWeight: 0
+  alignmentWeight: 0
+  boundsWeight: 0
+  wanderWeight: 0
+  flockRadius: 0
+  isLeader: 0
+  leader: {fileID: 0}
+  followDistance: 5
+  seektarget: {fileID: 0}
+--- !u!143 &14318222
 CharacterController:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
+  m_GameObject: {fileID: 172626}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: .0321293324
-  m_Radius: .0107860621
+  m_Height: 1
+  m_Radius: .5
   m_SlopeLimit: 45
   m_StepOffset: .300000012
   m_SkinWidth: .0799999982
@@ -129,70 +132,34 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: arrivalDistance
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: pursueTimestep
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: evadeTimestep
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: safeDistance
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: flockRadius
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: cohesionWeight
+      propertyPath: followDistance
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: maxForce
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: boundsWeight
-      value: 6
+      propertyPath: maxForce
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: alignmentWeight
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: separationWeight
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: separateDistance
+      propertyPath: mass
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
-      propertyPath: seekWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: avoidWeight
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: wanderWeight
+      propertyPath: radius
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: separationWeight
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: separateDistance
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 126408}
+  m_RootGameObject: {fileID: 172626}
   m_IsPrefabParent: 1
