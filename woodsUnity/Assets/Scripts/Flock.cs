@@ -14,7 +14,7 @@ public class Flock{
     private Vector3 centroid;
     private Vector3 flockDirection;
     private int numFlockers;
-
+	public Vehicle leader =null; //always null for deer, will be assigned for wolf
 
     public int NumFlockers { get { return numFlockers; } }
     public Vector3 Centroid { get { return centroid; } }

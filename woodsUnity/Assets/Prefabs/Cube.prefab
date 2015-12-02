@@ -105,7 +105,7 @@ MonoBehaviour:
   flockRadius: 0
   isLeader: 0
   leader: {fileID: 0}
-  followDistance: 5
+  followDistance: 10
   seektarget: {fileID: 0}
 --- !u!143 &14318222
 CharacterController:
@@ -133,7 +133,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: followDistance
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxSpeed

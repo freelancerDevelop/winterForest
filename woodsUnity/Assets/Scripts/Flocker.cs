@@ -170,4 +170,9 @@ public class Flocker : Vehicle {
 
         return desired;
     }
+
+	protected GameObject getNearest(List<GameObject> flock)
+	{
+		return null;
+	}
 }

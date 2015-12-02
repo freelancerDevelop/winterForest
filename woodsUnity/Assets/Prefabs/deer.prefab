@@ -100,7 +100,7 @@ MonoBehaviour:
   separationWeight: 6
   cohesionWeight: 5
   alignmentWeight: 8
-  boundsWeight: 6
+  boundsWeight: 0
   wanderWeight: 3
   flockRadius: 8
   regroupRadius: 8
@@ -166,7 +166,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: boundsWeight
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: alignmentWeight
