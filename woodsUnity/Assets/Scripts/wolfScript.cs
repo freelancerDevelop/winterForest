@@ -8,7 +8,7 @@ using System.Collections.Generic;
 /// </summary>
 public class wolfScript:Flocker {
 
-    private bool isHerder; //does this wolf herd or hunt when deer are found?
+    public bool isHerder; //does this wolf herd or hunt when deer are found?
     enum WolfState {TRACK, HUNT, EAT};
     WolfState state;
 
@@ -19,12 +19,15 @@ public class wolfScript:Flocker {
 	private Vector3 downDeer;
 	private float time;
 	public float feedtime; //the amount of time to spend eating, inspector field
+    public float followDistance;
+    public float herdDistance; //how far to let deer get away from their centroid
+    public float herdBuffer; //how far away to stay from the deer when herding
     /// <summary>
     /// the calcSteeringForces method used by wolves.
     /// </summary>
     protected override void calcSteeringForces()
     {
-        /*switch (state) {
+        switch (state) {
 		case WolfState.TRACK:
 			{
 				//only the leader needs to steer
@@ -38,7 +41,7 @@ public class wolfScript:Flocker {
 				//leader following
 				else
 				{
-					steeringForce += followLeader (flock.leader);
+					steeringForce += followLeader(flock.leader,followDistance);
 					steeringForce += separation(separateDistance)*separationWeight;
 				}
 				break;
@@ -48,7 +51,7 @@ public class wolfScript:Flocker {
 				if(isHerder) //if you're supposed to be containing, contain!
 					steeringForce += herd();
 				else //otherwise, try to catch the nearest deer
-					pursue(getNearest(huntFlock.Flockers));
+					pursue(huntFlock.Flockers[getNearest(huntFlock.Flockers)]);
 				//detect deer collisions
 					//if(collidingwithdeer)
 					//{//state = WolfState.EAT;
@@ -65,31 +68,32 @@ public class wolfScript:Flocker {
 				//eating behavior
 				//if more than certain distance away..? possibly later
 				steeringForce += arrive(downDeer);
-				time += Time.deltaTime();
+				time += Time.deltaTime;
 				if(time >= feedtime)
 				{	
-					downDeer = null;
+					downDeer = Vector3.zero;
 					state = WolfState.HUNT;
-				}	
-				
+				}
+                break;
 			}
-		}	*/
+		}
         base.calcSteeringForces();
     }	
 
     private Vector3 herd()
     {
+        foreach(Flocker deer in huntFlock.Flockers)
+        {
+            //if deer is straying too far from the center of the flock..
+            if((deer.transform.position - huntFlock.Centroid).sqrMagnitude > herdDistance*herdDistance)
+            {
+                Vector3 seekPoint = deer.transform.position + (deer.transform.position - huntFlock.Centroid)*herdBuffer;
+	            return seek(seekPoint);
+            }
+        }
         
-            //if(deer is too far away from its herd centroid)
-            //{
-	        //pursue(point one deer.safedistance away from the vector from the centroid to the escaping deer);
-	        //avoid(deer, deer.safedistance); //so they don’t get spooked by us going after them
 
-            //}
-
-        
-
-
+        //if we get here, then nobody's trying to leave, strangely..
         return Vector3.zero;
     }
 

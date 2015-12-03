@@ -148,12 +148,14 @@ public class GameManager : MonoBehaviour {
     {
         GameObject tree;
         float rand;
+        bool treePlaced = false; //controls how closely together trees get placed
         for(int i = 0; i < terrainLength; i++)
         {
             for(int j = 0; j < terrainWidth; j++)
             {
-                if(flowField[i,j] == Vector3.zero)
+                if(treePlaced || flowField[i,j] == Vector3.zero)
                 {
+                    treePlaced = false;
                     continue; //don't put a tree in a clearing, dummy!
                 }
                 else
@@ -164,7 +166,10 @@ public class GameManager : MonoBehaviour {
                         tree = (GameObject)GameObject.Instantiate(treePrefab1, new Vector3(i, 0, j), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
                         tree.AddComponent<ObstacleScript>(); //for radius
                         obstacles.Add(tree);
+                        treePlaced = true;
                     }
+                    else
+                        treePlaced = false; //shouldn't need this, it would already be false to get here, but just for clarity
                 }
             }
         }

@@ -47,7 +47,28 @@ public class Flock{
 
 
     }
+    //overloaded for wolves
+    public Flock(int numFlock, Vector3 centroidStart, GameObject prefab, int numHerders)
+    {
+        centroid = Vector3.zero;
+        flockDirection = Vector3.zero;
+        flockers = new List<Flocker>();
+        numFlockers = numFlock;
 
+        for (int i = 0; i < numFlock; i++)
+        {
+            flockers.Add((Flocker)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 0.97f, Random.Range(0, 6)), Quaternion.identity));
+            flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
+            if(i < numHerders)
+            {
+                flockers[i].GetComponent<wolfScript>().isHerder = true;
+            }
+
+        }
+        leader = flockers[0];
+
+
+    }
     public Flock()
     {
 
