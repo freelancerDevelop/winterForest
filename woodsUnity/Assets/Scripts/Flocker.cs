@@ -61,7 +61,7 @@ public class Flocker : Vehicle {
         if (flock == null || flock.NumFlockers == 0) //we don't have a flock
             return Vector3.zero;
 
-        List<GameObject> nearest = new List<GameObject>(); //holds the neighbors that are too close
+        List<Flocker> nearest = new List<Flocker>(); //holds the neighbors that are too close
         for (int i = 0; i < flock.NumFlockers; i++)
         {
             if (flock.Flockers[i] == this) //don't steer away from yourself
@@ -171,8 +171,18 @@ public class Flocker : Vehicle {
         return desired;
     }
 
-	protected GameObject getNearest(List<GameObject> flock)
+	protected int getNearest(List<Flocker> flock)
 	{
-		return null;
+        Flocker nearest = flock[0];
+        int i = 0;
+        for (; i < flock.Count; i++)
+        {
+            if ((this.transform.position - flock[i].transform.position).sqrMagnitude < (this.transform.position - nearest.transform.position).sqrMagnitude)
+            {
+                nearest = flock[i];
+            }
+        }
+         return i;
 	}
+   
 }

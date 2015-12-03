@@ -21,8 +21,8 @@ public class Flock{
     public Vector3 FlockDirection { get { return flockDirection; } }
 
     //list of flockers in the flock
-    private List<GameObject> flockers;
-    public List<GameObject> Flockers { get { return flockers; } }
+    private List<Flocker> flockers;
+    public List<Flocker> Flockers { get { return flockers; } }
 
     /// <summary>
     /// The constructor of the Flock class.
@@ -34,17 +34,22 @@ public class Flock{
     {
         centroid = Vector3.zero;
         flockDirection = Vector3.zero;
-        flockers = new List<GameObject>();
+        flockers = new List<Flocker>();
         numFlockers = numFlock;
 
         for (int i = 0; i < numFlock; i++)
         {
-            flockers.Add((GameObject) Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 0.97f, Random.Range(0, 6)), Quaternion.identity));
+            flockers.Add((Flocker) Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 0.97f, Random.Range(0, 6)), Quaternion.identity));
             flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
 
         }
 
 
+
+    }
+
+    public Flock()
+    {
 
     }
 
@@ -59,7 +64,7 @@ public class Flock{
             return;
 
         centroid = Vector3.zero;
-        foreach (GameObject flocker in flockers)
+        foreach (Flocker flocker in flockers)
         {
             centroid += flocker.transform.position;
         }
@@ -76,10 +81,16 @@ public class Flock{
             return;
 
         flockDirection = Vector3.zero;
-        foreach (GameObject flocker in flockers)
+        foreach(Flocker flocker in flockers)
         {
             flockDirection += flocker.transform.forward;
         }
         flockDirection.Normalize();
+    }
+
+    public void addFlocker(Flocker f)
+    {
+        flockers.Add(f);
+        numFlockers++;
     }
 }

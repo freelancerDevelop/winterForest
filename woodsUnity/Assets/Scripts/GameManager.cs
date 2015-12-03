@@ -30,8 +30,11 @@ public class GameManager : MonoBehaviour {
     private Flock wolves; //the pack of wolves
     private Vector3 wolfStart;
     private List<Vector3> deerStart;
+    public float BOUNDS_RADIUS;
+    public Vector3 BOUNDS_CENTER;
 
-
+    public Flock Wolves
+    { get { return wolves; } }
     //*************************
     //Inspector Variables
     //*************************
@@ -75,6 +78,8 @@ public class GameManager : MonoBehaviour {
         //initializing everything
         terrainWidth = (int)terrain.terrainData.size.z;
         terrainLength = (int)terrain.terrainData.size.x;
+        BOUNDS_CENTER = new Vector3(terrainLength / 2, 0, terrainWidth / 2);
+        BOUNDS_RADIUS = 200.0f;
         obstacles = new List<GameObject>();
         deerStart = new List<Vector3>();
         flowField = new Vector3[terrainLength, terrainWidth];
