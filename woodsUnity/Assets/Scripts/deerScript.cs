@@ -49,8 +49,13 @@ public class deerScript : Flocker {
                     steeringForce += temp;
                     steeringForce += flowFollow();
                     Flocker nearestWolf = gm.Wolves.Flockers[getNearest(gm.Wolves.Flockers)];
-                    if((this.transform.position - nearestWolf.transform.position).sqrMagnitude < fleedistance*fleedistance)
-                        state = DeerState.FLEE;
+                    if((this.flock.Centroid - nearestWolf.transform.position).sqrMagnitude < fleedistance*fleedistance)
+					{
+						state = DeerState.FLEE;
+						if(gm.herds.Contains (flock))
+							gm.herds.Remove(flock); //should get garbage collected if we remove our way of getting it
+				   		flock = null;
+					}	
                     break;
                 }
 		//fleeing
@@ -102,9 +107,11 @@ public class deerScript : Flocker {
                 this.flock.addFlocker(this);
             }
 		    //else make a new one with just the two of you
-            else
+			else if(this.flock == null) //the extra check is just in case they're trying to make new flocks for each other at the same time, dunno if Unity threads
             {
-                Flock newFlock = new Flock();
+                gm.herds.Add (new Flock(this)); //will assign it to us within the constructor
+				flock.addFlocker (nearestDeer);
+				nearestDeer.flock = flock;
             }
             return Vector3.zero; //flag
         }
