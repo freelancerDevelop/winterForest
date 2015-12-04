@@ -22,6 +22,7 @@ public class wolfScript:Flocker {
     public float followDistance;
     public float herdDistance; //how far to let deer get away from their centroid
     public float herdBuffer; //how far away to stay from the deer when herding
+	public float huntDistance; //how far away we have to be from a flock to start hunting them
     /// <summary>
     /// the calcSteeringForces method used by wolves.
     /// </summary>
@@ -41,8 +42,19 @@ public class wolfScript:Flocker {
 				//leader following
 				else
 				{
+					//having them all follow the same leader should pretty much give us cohesion and alignment without trying
 					steeringForce += followLeader(flock.leader,followDistance);
 					steeringForce += separation(separateDistance)*separationWeight;
+				}
+
+				foreach(Flock dflock in gm.Herds)
+				{
+					if((this.flock.Centroid - dflock.Centroid).sqrMagnitude > huntDistance * huntDistance)
+					{
+						huntFlock = dflock;
+						state = WolfState.HUNT;
+					}
+					
 				}
 				break;
 			}
@@ -52,22 +64,15 @@ public class wolfScript:Flocker {
 					steeringForce += herd();
 				else //otherwise, try to catch the nearest deer
 					pursue(huntFlock.Flockers[getNearest(huntFlock.Flockers)]);
-				//detect deer collisions
-					//if(collidingwithdeer)
-					//{//state = WolfState.EAT;
-					//downDeer = deer we collided with
-						//start timer
-						time = 0.0f;
-
-					//}
+					//deer collision detection is handled on onCollisionEnter
 				break;
 			}
 		case WolfState.EAT:
 			{
 
 				//eating behavior
-				//if more than certain distance away..? possibly later
 				steeringForce += arrive(downDeer);
+				steeringForce += separation (separateDistance)*separationWeight;
 				time += Time.deltaTime;
 				if(time >= feedtime)
 				{	
@@ -96,5 +101,21 @@ public class wolfScript:Flocker {
         //if we get here, then nobody's trying to leave, strangely..
         return Vector3.zero;
     }
+
+	void OnCollisionEnter(Collision col)
+	{
+		if (col.gameObject.tag == "deer") {
+			//if it's a deer we're hitting...
+			state = WolfState.EAT;
+			downDeer = col.gameObject.transform.position;
+			//the deer shouldn't be in a flock anymore, so don't need to clean that up..
+			//we dynamically grabbed the master list of deer so that's not an issue...
+			//so theoretically it should be safe to just throw it out now.
+			Destroy (col.gameObject);
+			//possibly instantiate a static dead deer here if there's time, but for now it's ok for them to just disappear
+			//start timer
+			time = 0.0f;
+		}
+	}
 
 }

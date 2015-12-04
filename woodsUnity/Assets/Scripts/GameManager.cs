@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
     //*************************
     //Flocks
     //*************************
-    private List<Flock> herds; //the multiple herds of deer
+    public List<Flock> herds; //the multiple herds of deer
     private Flock wolves; //the pack of wolves
     private Vector3 wolfStart;
     private List<Vector3> deerStart;
@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour {
 
     public Flock Wolves
     { get { return wolves; } }
+	public List<Flock> Herds
+	{ get{return herds;}}
     //*************************
     //Inspector Variables
     //*************************
@@ -212,7 +214,8 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void determineStartingLocations()
     {
-        
+		List<Vector3> deerStarts = new List<Vector3> ();
+
 
     }
     /// <summary>

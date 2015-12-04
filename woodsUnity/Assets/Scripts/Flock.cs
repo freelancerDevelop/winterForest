@@ -69,9 +69,14 @@ public class Flock{
 
 
     }
-    public Flock()
+    public Flock(Flocker initFlocker) //overloaded for deer regrouping
     {
-
+		centroid = Vector3.zero;
+		flockDirection = Vector3.zero;
+		flockers = new List<Flocker>();
+		numFlockers = 1;
+		flockers.Add (initFlocker);
+		flockers [0].flock = this;
     }
 
 
