@@ -173,6 +173,8 @@ public class Flocker : Vehicle {
 
 	protected int getNearest(List<Flocker> flock)
 	{
+        if (flock == null || flock.Count == 0)
+            return -1;
         Flocker nearest = flock[0];
         int i = 0;
         for (; i < flock.Count; i++)

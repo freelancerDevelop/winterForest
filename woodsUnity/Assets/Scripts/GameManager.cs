@@ -87,12 +87,12 @@ public class GameManager : MonoBehaviour {
         flowField = new Vector3[terrainLength, terrainWidth];
         createFlowField();
         determineStartingLocations();
-        wolves = new Flock(Random.Range(minWolves, maxWolves+1), wolfStart, wolfPrefab);
+        wolves = new Flock(Random.Range(minWolves, maxWolves + 1), wolfStart, wolfPrefab, numHerders);
         herds = new List<Flock>();      
 
 		for (int i = 0; i < numHerds; i++) {
 			//make the herds
-            herds.Add(new Flock(Random.Range(minDeer,maxDeer+1),Vector3.zero,deerPrefab));
+            herds.Add(new Flock(Random.Range(minDeer,maxDeer+1),deerStart[Random.Range(0,deerStart.Count)],deerPrefab));
 
 		}
 
@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour {
                     flowField[i, j] = fieldVec;
                 }
 
-                Debug.DrawRay(new Vector3(i, 0, j), flowField[i, j], Color.red, 600.0f, false); // 10 minutes of flow field
+                //Debug.DrawRay(new Vector3(i, 0, j), flowField[i, j], Color.red, 600.0f, false); // 10 minutes of flow field
             }
 
         }
@@ -214,7 +214,21 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void determineStartingLocations()
     {
-		List<Vector3> deerStarts = new List<Vector3> ();
+		deerStart = new List<Vector3> ();
+        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("waypoint"); //get all the waypoints
+
+        foreach(GameObject waypoint in waypoints)
+        {
+            if(!waypoint.GetComponent<waypointScript>().hasCabin && !waypoint.GetComponent<waypointScript>().wolfStart)
+            {
+                deerStart.Add(waypoint.transform.position);
+            }
+            else if(waypoint.GetComponent<waypointScript>().wolfStart)
+            {
+                wolfStart = waypoint.transform.position;
+            }
+        }
+        
 
 
     }
@@ -224,7 +238,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
 	void Update () {
 
-        if (wolves.NumFlockers != 0)
+        if (wolves != null && wolves.NumFlockers != 0)
         {
             wolves.CalcCentroid();
             wolves.CalcFlockDirection();

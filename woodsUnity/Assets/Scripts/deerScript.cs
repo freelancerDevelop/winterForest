@@ -48,6 +48,9 @@ public class deerScript : Flocker {
                     }
                     steeringForce += temp;
                     steeringForce += flowFollow();
+                    int index = getNearest(gm.Wolves.Flockers);
+                    if (index == -1)
+                        break;
                     Flocker nearestWolf = gm.Wolves.Flockers[getNearest(gm.Wolves.Flockers)];
                     if((this.flock.Centroid - nearestWolf.transform.position).sqrMagnitude < fleedistance*fleedistance)
 					{
@@ -61,7 +64,10 @@ public class deerScript : Flocker {
 		//fleeing
             case DeerState.FLEE:
             {
-                Flocker nearest = gm.Wolves.Flockers[getNearest(gm.Wolves.Flockers)];
+                int index = getNearest(gm.Wolves.Flockers);
+                if(index == -1)
+                    break;
+                Flocker nearest = gm.Wolves.Flockers[index];
 		        steeringForce += evade(nearest);
 		        if((nearest.transform.position - this.transform.position).sqrMagnitude > fleedistance*fleedistance)
 		            state = DeerState.SEARCH;
