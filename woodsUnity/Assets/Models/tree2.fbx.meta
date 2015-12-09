@@ -1,44 +1,16 @@
 fileFormatVersion: 2
-guid: 330511a011621ff469f668c3f9b8008b
-timeCreated: 1448937130
+guid: 650fd0105f1cec84fa492f862c650476
+timeCreated: 1449686826
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: polySurface1
-    100002: polySurface2
-    100004: polySurface3
-    100006: polySurface4
-    100008: //RootNode
-    100010: polySurface1 1
-    100012: transform1
-    100014: transform2
-    100016: transform3
-    100018: transform4
-    100020: tree2
-    400000: polySurface1
-    400002: polySurface2
-    400004: polySurface3
-    400006: polySurface4
-    400008: //RootNode
-    400010: polySurface1 1
-    400012: transform1
-    400014: transform2
-    400016: transform3
-    400018: transform4
-    400020: tree2
-    2300000: polySurface1
-    2300002: polySurface2
-    2300004: polySurface3
-    2300006: polySurface4
-    3300000: polySurface1
-    3300002: polySurface2
-    3300004: polySurface3
-    3300006: polySurface4
-    4300000: polySurface1
-    4300002: polySurface2
-    4300004: polySurface3
-    4300006: polySurface4
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: tree2
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -96,7 +68,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

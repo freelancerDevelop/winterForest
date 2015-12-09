@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 85d0bc43af21a8941988aeadb246608f
-timeCreated: 1449513606
+guid: 124896a00fb3b1c4fabc80fe0059b4b3
+timeCreated: 1449686156
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube1
+    4300000: rifle
     9500000: //RootNode
   materials:
     importMaterials: 1
