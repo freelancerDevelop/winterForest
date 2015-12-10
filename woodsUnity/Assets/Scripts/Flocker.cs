@@ -177,7 +177,7 @@ public class Flocker : Vehicle {
             return -1;
         Flocker nearest = flock[0];
         int i = 0;
-        for (; i < flock.Count; i++)
+        for (; i < flock.Count-1; i++)
         {
             if ((this.transform.position - flock[i].transform.position).sqrMagnitude < (this.transform.position - nearest.transform.position).sqrMagnitude)
             {

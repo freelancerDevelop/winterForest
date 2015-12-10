@@ -224,7 +224,9 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -1751,6 +1753,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 463258, guid: ee8a132346cb17542916865606ca34ec, type: 2}
   m_PrefabInternal: {fileID: 1072665378}
+--- !u!20 &1116777633 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2076058, guid: 016501a6e714ede4184f2d53b08b2c2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1908034467}
 --- !u!1001 &1184715847
 Prefab:
   m_ObjectHideFlags: 0
@@ -1790,6 +1797,42 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: treePrefab3
+      value: 
+      objectReference: {fileID: 132514, guid: 2f4e933adcae9384ca67085450f1df5e, type: 2}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: treePrefab2
+      value: 
+      objectReference: {fileID: 100482, guid: 78ce87098dfaa0e4e8bd52818352c930, type: 2}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: treePrefab1
+      value: 
+      objectReference: {fileID: 156012, guid: 742106f6e19268e4c8d20bf0636ace20, type: 2}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: wolfPrefab
+      value: 
+      objectReference: {fileID: 172626, guid: ffa8a6b0664f645449f34f817de3f31b, type: 2}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: terrain
+      value: 
+      objectReference: {fileID: 711296124}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: minDeer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: numHerders
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: numHunters
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11469092, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
+      propertyPath: myCamera
+      value: 
+      objectReference: {fileID: 1116777633}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8628311448b4fb4ba1509b028f3dd21, type: 2}
   m_IsPrefabParent: 0

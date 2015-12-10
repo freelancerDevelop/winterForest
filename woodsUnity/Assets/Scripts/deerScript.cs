@@ -49,16 +49,18 @@ public class deerScript : Flocker {
                     steeringForce += temp;
                     steeringForce += flowFollow();
                     int index = getNearest(gm.Wolves.Flockers);
-                    if (index == -1)
-                        break;
-                    Flocker nearestWolf = gm.Wolves.Flockers[getNearest(gm.Wolves.Flockers)];
-                    if((this.flock.Centroid - nearestWolf.transform.position).sqrMagnitude < fleedistance*fleedistance)
-					{
-						state = DeerState.FLEE;
-						if(gm.herds.Contains (flock))
-							gm.herds.Remove(flock); //should get garbage collected if we remove our way of getting it
-				   		flock = null;
-					}	
+                    if (index > -1)
+                    {
+                        //Debug.Log(index);
+                        Flocker nearestWolf = gm.Wolves.Flockers[index];
+                        if ((this.flock.Centroid - nearestWolf.transform.position).sqrMagnitude < fleedistance * fleedistance)
+                        {
+                            state = DeerState.FLEE;
+                            if (gm.herds.Contains(flock))
+                                gm.herds.Remove(flock); //should get garbage collected if we remove our way of getting it
+                            flock = null;
+                        }
+                    }
                     break;
                 }
 		//fleeing

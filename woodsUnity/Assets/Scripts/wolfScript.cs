@@ -63,7 +63,11 @@ public class wolfScript:Flocker {
 				if(isHerder) //if you're supposed to be containing, contain!
 					steeringForce += herd();
 				else //otherwise, try to catch the nearest deer
-					pursue(huntFlock.Flockers[getNearest(huntFlock.Flockers)]);
+                {
+                    int nearestIndex = getNearest(huntFlock.Flockers);
+                    if(nearestIndex > -1)
+					    pursue(huntFlock.Flockers[nearestIndex]);
+                }
 					//deer collision detection is handled on onCollisionEnter
 				break;
 			}
