@@ -10,7 +10,7 @@ public class wolfScript:Flocker {
 
     public bool isHerder; //does this wolf herd or hunt when deer are found?
     enum WolfState {TRACK, HUNT, EAT};
-    WolfState state;
+    WolfState state = WolfState.TRACK;
 
 	//hunting fields
 	private Flock huntFlock;

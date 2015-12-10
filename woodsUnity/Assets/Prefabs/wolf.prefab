@@ -88,29 +88,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61e88381054b2049873e1402091cd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 0
-  maxForce: 0
-  mass: 0
+  maxSpeed: 5
+  maxForce: 5
+  mass: 1
   radius: 0
-  safeDistance: 0
-  arrivalDistance: 0
-  pursueTimestep: 0
-  evadeTimestep: 0
-  seekWeight: 0
-  avoidWeight: 0
-  separateDistance: 0
-  separationWeight: 0
-  cohesionWeight: 0
-  alignmentWeight: 0
-  boundsWeight: 0
-  wanderWeight: 0
-  flockRadius: 0
+  safeDistance: 3
+  arrivalDistance: 5
+  pursueTimestep: 2
+  evadeTimestep: 2
+  seekWeight: 4
+  avoidWeight: 4
+  separateDistance: 1
+  separationWeight: 4
+  cohesionWeight: 4
+  alignmentWeight: 4
+  boundsWeight: 4
+  wanderWeight: 4
+  flockRadius: 4
   isHerder: 0
-  feedtime: 0
-  followDistance: 0
-  herdDistance: 0
-  herdBuffer: 0
-  huntDistance: 0
+  feedtime: 2
+  followDistance: 2
+  herdDistance: 10
+  herdBuffer: 3
+  huntDistance: 10
 --- !u!143 &14318222
 CharacterController:
   m_ObjectHideFlags: 1
@@ -137,7 +137,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: followDistance
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxSpeed
@@ -157,11 +157,71 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separationWeight
-      value: 100
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separateDistance
-      value: 15
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: safeDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: arrivalDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: pursueTimestep
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: evadeTimestep
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: seekWeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: avoidWeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cohesionWeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: alignmentWeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: boundsWeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wanderWeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: flockRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: herdDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: huntDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: herdBuffer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: feedtime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
