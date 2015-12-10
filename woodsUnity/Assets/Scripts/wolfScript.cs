@@ -18,6 +18,7 @@ public class wolfScript:Flocker {
 	//eating fields
 	private Vector3 downDeer;
 	private float time;
+    public float followWeight;
 	public float feedtime; //the amount of time to spend eating, inspector field
     public float followDistance;
     public float herdDistance; //how far to let deer get away from their centroid
@@ -43,7 +44,7 @@ public class wolfScript:Flocker {
 				else
 				{
 					//having them all follow the same leader should pretty much give us cohesion and alignment without trying
-					steeringForce += followLeader(flock.leader,followDistance);
+					steeringForce += followLeader(flock.leader,followDistance)*followWeight;
 					steeringForce += separation(separateDistance)*separationWeight;
 				}
 
