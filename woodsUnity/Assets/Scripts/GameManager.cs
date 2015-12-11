@@ -249,7 +249,7 @@ public class GameManager : MonoBehaviour {
             flock.CalcCentroid();
             flock.CalcFlockDirection();
         }
-
+    /*
         //for switching cameras
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -273,9 +273,18 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            this.transform.position = herds[cameraID - 1].Centroid;
-            this.transform.forward = herds[cameraID - 1].FlockDirection;
+            if (herds.Count <= cameraID)
+            {
+                this.transform.position = herds[cameraID - 1].Centroid;
+                this.transform.forward = herds[cameraID - 1].FlockDirection;
+            }
+            else
+            {
+                this.transform.position = wolves.Centroid;
+                this.transform.forward = wolves.FlockDirection;
+            }
         }
+     */
 	}
 
 	

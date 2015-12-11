@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11443158}
   m_Layer: 0
   m_Name: wolf
-  m_TagString: Untagged
+  m_TagString: wolf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,9 +50,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -94,8 +92,8 @@ MonoBehaviour:
   radius: 0
   safeDistance: 3
   arrivalDistance: 5
-  pursueTimestep: 2
-  evadeTimestep: 2
+  pursueTimestep: 1
+  evadeTimestep: 1
   seekWeight: 4
   avoidWeight: 4
   separateDistance: 1
@@ -105,13 +103,16 @@ MonoBehaviour:
   boundsWeight: 4
   wanderWeight: 4
   flockRadius: 4
+  leaderRadius: 0
   isHerder: 0
+  id: 0
+  state: 0
   followWeight: 8
   feedtime: 2
   followDistance: 2
   herdDistance: 10
   herdBuffer: 3
-  huntDistance: 10
+  huntDistance: 25
 --- !u!143 &14318222
 CharacterController:
   m_ObjectHideFlags: 1
@@ -174,11 +175,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: pursueTimestep
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: evadeTimestep
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: seekWeight
@@ -214,7 +215,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: huntDistance
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: herdBuffer
@@ -227,6 +228,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: followWeight
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StepOffset
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: wolf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

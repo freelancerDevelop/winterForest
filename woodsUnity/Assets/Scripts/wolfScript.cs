@@ -9,8 +9,9 @@ using System.Collections.Generic;
 public class wolfScript:Flocker {
 
     public bool isHerder; //does this wolf herd or hunt when deer are found?
-    enum WolfState {TRACK, HUNT, EAT};
-    WolfState state = WolfState.TRACK;
+    public int id;
+    public enum WolfState {TRACK, HUNT, EAT};
+    public WolfState state = WolfState.TRACK;
 
 	//hunting fields
 	private Flock huntFlock;
@@ -34,26 +35,48 @@ public class wolfScript:Flocker {
 			{
 				//only the leader needs to steer
 				//tracking behavior
-				//wander, use normalized flow fields to try to find the clearings, but not as quickly as deer leave the woods
-				if(flock.leader == this)
+				//wander, make wandering fight a little with finding the deer
+
+                //Debug.Log(flock.leader);
+				if(flock.leader == this.id)
 				{
 					steeringForce+= wander()*wanderWeight;
-					steeringForce+= flowFollow ().normalized;
+
+                    //head towards the closest deer
+                    GameObject[] deer = GameObject.FindGameObjectsWithTag("deer");
+                    List<Flocker> deerList = new List<Flocker>();
+                    foreach(GameObject d in deer)
+                    {
+                        deerList.Add(d.GetComponent<Flocker>());
+                    }
+                    int index = getNearest(deerList);
+                    //Debug.Log(deerList.Count);
+                    if (index != -1)
+                    {
+                        //Debug.Log("index not -1");
+                        steeringForce += seek(deerList[index].transform.position) * seekWeight;
+                    }
 				}	
 				//leader following
 				else
 				{
 					//having them all follow the same leader should pretty much give us cohesion and alignment without trying
-					steeringForce += followLeader(flock.leader,followDistance)*followWeight;
+                   // Debug.Log("calling follow");
+					steeringForce += followLeader(flock.Flockers[0],followDistance)*followWeight;
 					steeringForce += separation(separateDistance)*separationWeight;
 				}
-
+                //everyone avoids obstacles
+                foreach (GameObject obstacle in gm.Obstacles)
+                {
+                    steeringForce += avoid(obstacle) * avoidWeight;
+                }
 				foreach(Flock dflock in gm.Herds)
 				{
-					if((this.flock.Centroid - dflock.Centroid).sqrMagnitude > huntDistance * huntDistance)
+					if((this.flock.Centroid - dflock.Centroid).sqrMagnitude < huntDistance * huntDistance)
 					{
 						huntFlock = dflock;
 						state = WolfState.HUNT;
+                        Debug.Log("change state to hunt");
 					}
 					
 				}
@@ -61,15 +84,52 @@ public class wolfScript:Flocker {
 			}
 		case WolfState.HUNT:
 			{
-				if(isHerder) //if you're supposed to be containing, contain!
-					steeringForce += herd();
-				else //otherwise, try to catch the nearest deer
+                if (isHerder) //if you're supposed to be containing, contain!
                 {
-                    int nearestIndex = getNearest(huntFlock.Flockers);
-                    if(nearestIndex > -1)
-					    pursue(huntFlock.Flockers[nearestIndex]);
+                    //Debug.Log("herding");
+                    steeringForce += herd();
                 }
-					//deer collision detection is handled on onCollisionEnter
+                else //otherwise, try to catch the nearest deer
+                {
+                    //Debug.Log("hunting");
+
+                    int nearestIndex;
+                    if (huntFlock != null)
+                        nearestIndex = getNearest(huntFlock.Flockers);
+                    else
+                        nearestIndex = -1;
+                    if (nearestIndex > -1)
+                    {
+                        if(huntFlock.Flockers[nearestIndex] != null)
+                            steeringForce+=pursue(huntFlock.Flockers[nearestIndex]);
+
+                    }
+                    else
+                        Debug.Log("hunt index -1");
+                }
+					//deer collision detection 
+                if(huntFlock != null)
+                    foreach(Flocker f in huntFlock.Flockers)
+                    {
+                      if(f!=null)
+                        if(checkCollide(f))
+                        {
+                            
+                            foreach(Flocker w in flock.Flockers)
+                                w.GetComponent<wolfScript>().state = WolfState.EAT;
+                            huntFlock = null;
+                            Debug.Log("change state to eat");
+                            downDeer = f.transform.position;
+                            //the deer shouldn't be in a flock anymore, so don't need to clean that up..
+                            //we dynamically grabbed the master list of deer so that's not an issue...
+                            //so theoretically it should be safe to just throw it out now.
+                            f.kill();
+                            //possibly instantiate a static dead deer here if there's time, but for now it's ok for them to just disappear
+                            //start timer
+                            time = 0.0f;
+                            break;
+                        }
+                    }
 				break;
 			}
 		case WolfState.EAT:
@@ -95,7 +155,7 @@ public class wolfScript:Flocker {
         foreach(Flocker deer in huntFlock.Flockers)
         {
             //if deer is straying too far from the center of the flock..
-            if((deer.transform.position - huntFlock.Centroid).sqrMagnitude > herdDistance*herdDistance)
+            if(deer != null && (deer.transform.position - huntFlock.Centroid).sqrMagnitude > herdDistance*herdDistance)
             {
                 Vector3 seekPoint = deer.transform.position + (deer.transform.position - huntFlock.Centroid)*herdBuffer;
 	            return seek(seekPoint);
@@ -107,20 +167,5 @@ public class wolfScript:Flocker {
         return Vector3.zero;
     }
 
-	void OnCollisionEnter(Collision col)
-	{
-		if (col.gameObject.tag == "deer") {
-			//if it's a deer we're hitting...
-			state = WolfState.EAT;
-			downDeer = col.gameObject.transform.position;
-			//the deer shouldn't be in a flock anymore, so don't need to clean that up..
-			//we dynamically grabbed the master list of deer so that's not an issue...
-			//so theoretically it should be safe to just throw it out now.
-			Destroy (col.gameObject);
-			//possibly instantiate a static dead deer here if there's time, but for now it's ok for them to just disappear
-			//start timer
-			time = 0.0f;
-		}
-	}
 
 }

@@ -14,7 +14,7 @@ public class Flock{
     private Vector3 centroid;
     private Vector3 flockDirection;
     private int numFlockers;
-	public Vehicle leader =null; //always null for deer, will be assigned for wolf
+	public int leader = -1; //always -1 for deer, will be assigned for wolf
 
     public int NumFlockers { get { return numFlockers; } }
     public Vector3 Centroid { get { return centroid; } }
@@ -58,17 +58,19 @@ public class Flock{
 
         for (int i = 0; i < numFlock; i++)
         {
-            GameObject newThing = (GameObject)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 0.97f, Random.Range(0, 6)), Quaternion.identity);
+            GameObject newThing = (GameObject)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(4, 6), 1.2f, Random.Range(4, 6)), Quaternion.identity);
             flockers.Add(newThing.GetComponent<Flocker>());
             flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
-            if(i < numHerders || i < numFlock)
+            flockers[i].GetComponent<wolfScript>().id = i;
+            if(i < numHerders && i < numFlock)
             {
                 flockers[i].GetComponent<wolfScript>().isHerder = true;
+               
             }
 
         }
-        if(numFlockers != 0)
-            leader = flockers[0];
+        if (numFlockers != 0)
+            leader = 0;
 
 
     }
@@ -95,6 +97,7 @@ public class Flock{
         centroid = Vector3.zero;
         foreach (Flocker flocker in flockers)
         {
+           if(flocker != null)
             centroid += flocker.transform.position;
         }
         centroid /= numFlockers;

@@ -8,8 +8,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CharacterController))]
 public class deerScript : Flocker {
 
-    enum DeerState { GRAZE, FLEE, SEARCH}; 
-    DeerState state = DeerState.GRAZE;
+    public enum DeerState { GRAZE, FLEE, SEARCH}; 
+    public DeerState state = DeerState.GRAZE;
 
     //**********
     // Inspector Variables
@@ -51,11 +51,14 @@ public class deerScript : Flocker {
                     int index = getNearest(gm.Wolves.Flockers);
                     if (index > -1)
                     {
-                        //Debug.Log(index);
+                        //Debug.Log("checking for wolves");
                         Flocker nearestWolf = gm.Wolves.Flockers[index];
-                        if ((this.flock.Centroid - nearestWolf.transform.position).sqrMagnitude < fleedistance * fleedistance)
+                        if ((this.transform.position - nearestWolf.transform.position).sqrMagnitude < fleedistance * fleedistance)
                         {
-                            state = DeerState.FLEE;
+                            Debug.Log("Change State to flee");
+                            foreach(Flocker f in flock.Flockers)
+                                if(f!=null)
+                                    f.GetComponent<deerScript>().state = DeerState.FLEE;
                             if (gm.herds.Contains(flock))
                                 gm.herds.Remove(flock); //should get garbage collected if we remove our way of getting it
                             flock = null;
@@ -67,12 +70,13 @@ public class deerScript : Flocker {
             case DeerState.FLEE:
             {
                 int index = getNearest(gm.Wolves.Flockers);
-                if(index == -1)
-                    break;
-                Flocker nearest = gm.Wolves.Flockers[index];
-		        steeringForce += evade(nearest);
-		        if((nearest.transform.position - this.transform.position).sqrMagnitude > fleedistance*fleedistance)
-		            state = DeerState.SEARCH;
+                if (index != -1)
+                {
+                    Flocker nearest = gm.Wolves.Flockers[index];
+                    steeringForce += evade(nearest);
+                    if ((nearest.transform.position - this.transform.position).sqrMagnitude > fleedistance * fleedistance)
+                        state = DeerState.SEARCH;
+                }
                 break;
             }
 		//regroup
@@ -128,4 +132,6 @@ public class deerScript : Flocker {
         return arrive(nearestDeer.transform.position);
         
     }
+
+    
 }

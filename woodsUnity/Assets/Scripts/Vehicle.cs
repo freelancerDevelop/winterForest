@@ -174,7 +174,7 @@ abstract public class Vehicle : MonoBehaviour {
 
         if(desired.sqrMagnitude < arrivalDistance*arrivalDistance) //we don't need no square roots!
         {
-            Debug.Log("arriving");
+            
             float scale = map(desired.sqrMagnitude, 0, arrivalDistance * arrivalDistance, 0, maxSpeed);
             desired = desired.normalized * scale;
         }
@@ -205,7 +205,7 @@ abstract public class Vehicle : MonoBehaviour {
     /// <returns>A force vector that when applied will produce pursuit behavior.</returns>
     protected Vector3 pursue(Vehicle target)
     {
-        Vector3 projected = target.transform.position + target.velocity * evadeTimestep; //assume that the target will continue along its current trajectory
+        Vector3 projected = target.transform.position + target.transform.forward * evadeTimestep; //assume that the target will continue along its current trajectory
         return seek(projected);
     }
 
@@ -222,6 +222,15 @@ abstract public class Vehicle : MonoBehaviour {
     private float map(float value, float ilbound, float iubound, float flbound, float fubound)
     {
         return ((value - ilbound) * (fubound - flbound) / (iubound - ilbound)) + flbound;
+
+    }
+
+    protected bool checkCollide(Vehicle other)
+    {
+        Debug.Log("checking collision");
+        Debug.Log((this.transform.position - other.transform.position).sqrMagnitude);
+        Debug.Log(Mathf.Pow(this.radius+other.radius, 2.0f));
+        return (this.transform.position - other.transform.position).sqrMagnitude  <= Mathf.Pow(this.radius+other.radius, 2.0f)+0.2f;
 
     }
 

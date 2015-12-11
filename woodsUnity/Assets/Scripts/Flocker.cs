@@ -28,6 +28,7 @@ public class Flocker : Vehicle {
     public float boundsWeight;
     public float wanderWeight;
     public float flockRadius;
+    public float leaderRadius;
 
 
 	// Call Inherited Start and then do our own
@@ -64,9 +65,9 @@ public class Flocker : Vehicle {
         List<Flocker> nearest = new List<Flocker>(); //holds the neighbors that are too close
         for (int i = 0; i < flock.NumFlockers; i++)
         {
-            if (flock.Flockers[i] == this) //don't steer away from yourself
+            if (flock.Flockers[i] ==null || flock.Flockers[i].gameObject == this.gameObject) //don't steer away from yourself
                 continue;
-            if (Vector3.SqrMagnitude(this.transform.position - flock.Flockers[i].transform.position) < separationDistance * separationDistance)
+            if (flock.Flockers[i] != null && Vector3.SqrMagnitude(this.transform.position - flock.Flockers[i].transform.position) < separationDistance * separationDistance)
                 nearest.Add(flock.Flockers[i]);
         }
         Vector3 desired = Vector3.zero;
@@ -153,24 +154,29 @@ public class Flocker : Vehicle {
     /// <returns>the force vector that will produce leader following behavior</returns>
     public Vector3 followLeader(Vehicle leader, float followDistance)
     {
-        if (this == leader) //don't follow yourself
-            return Vector3.zero;
-        Vector3 desired = Vector3.zero;
-
-        if((leader.transform.position - leader.transform.forward * followDistance).sqrMagnitude < followDistance*followDistance)
+        Vector3 force = Vector3.zero;
+        Vector3 target = leader.transform.forward;
+        target *= -followDistance;
+        target += leader.transform.position;
+        if(isInLeaderSight(leader))
         {
-            desired += evade(leader);
+            Debug.Log("evading");
+            force += evade(leader);
         }
         else
         //we're not in the way, so follow
         {
-            desired += arrive(leader.transform.position - leader.transform.forward * followDistance);
-            //desired += separation(separateDistance)*separationWeight;
+            //Debug.Log("following");
+            force += arrive(target);
+            force += separation(separateDistance)*separationWeight;
         }
 
-        return desired;
+        return force;
     }
-
+    private bool isInLeaderSight(Vehicle leader)
+    {
+        return ((this.transform.position -leader.transform.forward).sqrMagnitude <= leaderRadius*leaderRadius) || ((this.transform.position -leader.transform.position).sqrMagnitude <= leaderRadius*leaderRadius);
+    }
 	protected int getNearest(List<Flocker> flock)
 	{
         if (flock == null || flock.Count == 0)
@@ -179,12 +185,19 @@ public class Flocker : Vehicle {
         int i = 0;
         for (; i < flock.Count-1; i++)
         {
-            if ((this.transform.position - flock[i].transform.position).sqrMagnitude < (this.transform.position - nearest.transform.position).sqrMagnitude)
-            {
-                nearest = flock[i];
-            }
+            
+                if (flock[i] != null && (this.transform.position - flock[i].transform.position).sqrMagnitude < (this.transform.position - nearest.transform.position).sqrMagnitude)
+                {
+                    nearest = flock[i];
+                 }
+            
         }
          return i;
 	}
-   
+    public void kill()
+    {
+        tag = "Untagged"; //won't come up in list of all deer
+        this.gameObject.SetActive(false);
+
+    }
 }
