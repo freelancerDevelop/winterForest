@@ -17,7 +17,7 @@ public class wolfScript:Flocker {
 	private Flock huntFlock;
 
 	//eating fields
-	private Vector3 downDeer;
+	private static Vector3 downDeer;
 	private float time;
     public float followWeight;
 	public float feedtime; //the amount of time to spend eating, inspector field
@@ -54,7 +54,8 @@ public class wolfScript:Flocker {
                     if (index != -1)
                     {
                         //Debug.Log("index not -1");
-                        steeringForce += seek(deerList[index].transform.position) * seekWeight;
+                        if(deerList[index]!=null)
+                            steeringForce += seek(deerList[index].transform.position) * seekWeight;
                     }
 				}	
 				//leader following
@@ -127,7 +128,7 @@ public class wolfScript:Flocker {
                             //possibly instantiate a static dead deer here if there's time, but for now it's ok for them to just disappear
                             //start timer
                             time = 0.0f;
-                            break;
+                            return;
                         }
                     }
 				break;
@@ -140,9 +141,12 @@ public class wolfScript:Flocker {
 				steeringForce += separation (separateDistance)*separationWeight;
 				time += Time.deltaTime;
 				if(time >= feedtime)
-				{	
+				{
+                    Debug.Log("reset");
 					downDeer = Vector3.zero;
-					state = WolfState.HUNT;
+					state = WolfState.TRACK;
+                    time = 0.0f;
+                    
 				}
                 break;
 			}

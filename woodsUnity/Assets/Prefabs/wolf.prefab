@@ -96,8 +96,8 @@ MonoBehaviour:
   evadeTimestep: 1
   seekWeight: 4
   avoidWeight: 4
-  separateDistance: 1
-  separationWeight: 4
+  separateDistance: 5
+  separationWeight: 5
   cohesionWeight: 4
   alignmentWeight: 4
   boundsWeight: 4
@@ -108,11 +108,11 @@ MonoBehaviour:
   id: 0
   state: 0
   followWeight: 8
-  feedtime: 2
+  feedtime: 20
   followDistance: 2
   herdDistance: 10
   herdBuffer: 3
-  huntDistance: 25
+  huntDistance: 100
 --- !u!143 &14318222
 CharacterController:
   m_ObjectHideFlags: 1
@@ -159,11 +159,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separationWeight
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separateDistance
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: safeDistance
@@ -215,7 +215,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: huntDistance
-      value: 25
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: herdBuffer
@@ -223,7 +223,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: feedtime
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: followWeight

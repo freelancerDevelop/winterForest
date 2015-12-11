@@ -76,17 +76,7 @@ public class Flocker : Vehicle {
         for (int i = 0; i < nearest.Count; i++)
         {
             Vector3 vecToCenter = nearest[i].transform.position - this.transform.position;
-            if (Vector3.Dot(vecToCenter, this.transform.forward) > 0)
-            {
-                if (Vector3.Dot(vecToCenter, this.transform.right) > 0)
-                    desired += this.transform.right.normalized * -1 * maxSpeed;
-                else
-                    desired += this.transform.right.normalized * maxSpeed;
-            }
-            else
-            {
-                desired += this.transform.forward * maxSpeed;
-            }
+            desired += vecToCenter * -1;
         }
         if (desired != Vector3.zero)
             return (desired - this.velocity);

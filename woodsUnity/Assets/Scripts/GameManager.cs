@@ -47,9 +47,8 @@ public class GameManager : MonoBehaviour {
     public int minWolves; //minimum number of wolves in the pack
     public int numHerders; //number of wolves with herding behavior
     public int numHunters; //number of wolves with hunting behavior
-    public float treeWeight1; //how many of the trees should be of type 1,2,3? Weighted relative to the sum of all 3 weight values.
+    public float treeWeight1; //how many of the trees should be of type 1,2,3? 3 is the catch all.
     public float treeWeight2;
-    public float treeWeight3;
 
     //*************************
     //Prefabs
@@ -165,7 +164,15 @@ public class GameManager : MonoBehaviour {
                     rand = Random.Range(0.0f, 10000.0f);
                     if (rand < flowField[i, j].sqrMagnitude)
                     {
-                        tree = (GameObject)GameObject.Instantiate(treePrefab1, new Vector3(i, 0, j), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
+                        Object prefab;
+                        float treeRand = Random.Range(0.0f, 1.0f);
+                        if (treeRand < treeWeight1)
+                            prefab = treePrefab1;
+                        else if (treeRand < treeWeight1 + treeWeight2)
+                            prefab = treePrefab2;
+                        else
+                            prefab = treePrefab3;
+                        tree = (GameObject)GameObject.Instantiate(prefab, new Vector3(i, 0, j), Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f));
                         tree.AddComponent<ObstacleScript>(); //for radius
                         obstacles.Add(tree);
                         treePlaced = true;

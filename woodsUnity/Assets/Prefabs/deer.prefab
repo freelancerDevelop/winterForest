@@ -106,7 +106,7 @@ MonoBehaviour:
   leaderRadius: 0
   state: 0
   regroupRadius: 8
-  fleedistance: 5
+  fleedistance: 75
 --- !u!143 &14330652
 CharacterController:
   m_ObjectHideFlags: 1
@@ -221,7 +221,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fleedistance
-      value: 5
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

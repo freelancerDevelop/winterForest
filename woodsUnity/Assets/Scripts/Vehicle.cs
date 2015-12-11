@@ -227,9 +227,9 @@ abstract public class Vehicle : MonoBehaviour {
 
     protected bool checkCollide(Vehicle other)
     {
-        Debug.Log("checking collision");
-        Debug.Log((this.transform.position - other.transform.position).sqrMagnitude);
-        Debug.Log(Mathf.Pow(this.radius+other.radius, 2.0f));
+        //Debug.Log("checking collision");
+        //Debug.Log((this.transform.position - other.transform.position).sqrMagnitude);
+        //Debug.Log(Mathf.Pow(this.radius+other.radius, 2.0f));
         return (this.transform.position - other.transform.position).sqrMagnitude  <= Mathf.Pow(this.radius+other.radius, 2.0f)+0.2f;
 
     }
