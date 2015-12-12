@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 96cf0ff5d83cac24bbb25d6cbb05776c
+timeCreated: 1449947001
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: deer
+    100004: head
+    100006: hips
+    100008: ikHandle1
+    100010: ikHandle2
+    100012: ikHandle3
+    100014: lelbow
+    100016: lfetlock_fore
+    100018: lfetlock_hind
+    100020: lhock
+    100022: lhoof_fore
+    100024: lhoof_hind
+    100026: lknee
+    100028: lshoulder
+    100030: lstifle
+    100032: neckbase
+    100034: neckmid
+    100036: poll
+    100038: relbow
+    100040: rfetlock_fore
+    100042: rfetlock_hind
+    100044: rhock
+    100046: rhoof_fore
+    100048: rhoof_hind
+    100050: rknee
+    100052: rshoulder
+    100054: rstifle
+    100056: withers
+    400000: //RootNode
+    400002: deer
+    400004: head
+    400006: hips
+    400008: ikHandle1
+    400010: ikHandle2
+    400012: ikHandle3
+    400014: lelbow
+    400016: lfetlock_fore
+    400018: lfetlock_hind
+    400020: lhock
+    400022: lhoof_fore
+    400024: lhoof_hind
+    400026: lknee
+    400028: lshoulder
+    400030: lstifle
+    400032: neckbase
+    400034: neckmid
+    400036: poll
+    400038: relbow
+    400040: rfetlock_fore
+    400042: rfetlock_hind
+    400044: rhock
+    400046: rhoof_fore
+    400048: rhoof_hind
+    400050: rknee
+    400052: rshoulder
+    400054: rstifle
+    400056: withers
+    2300000: deer
+    3300000: deer
+    4300000: deer
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

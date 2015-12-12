@@ -1,0 +1,318 @@
+fileFormatVersion: 2
+guid: edb2ccbcd276e9947bea4ff17924ee2c
+timeCreated: 1449947006
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: head
+    100002: hips
+    100004: lfetlock_fore
+    100006: lfetlock_hind
+    100008: lhock
+    100010: lknee
+    100012: lpaw2_fore
+    100014: lpaw2_hind
+    100016: lpaw_fore
+    100018: lpaw_hind
+    100020: lshoulder
+    100022: lstifle
+    100024: neck
+    100026: pelvis
+    100028: poll
+    100030: rfetlock_fore
+    100032: rfetlock_hind
+    100034: rhock
+    100036: rknee
+    100038: rpaw2_fore
+    100040: rpaw2_hind
+    100042: rpaw_fore
+    100044: rpaw_hind
+    100046: rshoulder
+    100048: rstifle
+    100050: tail
+    100052: wither
+    100054: //RootNode
+    100056: wolf
+    400000: head
+    400002: hips
+    400004: lfetlock_fore
+    400006: lfetlock_hind
+    400008: lhock
+    400010: lknee
+    400012: lpaw2_fore
+    400014: lpaw2_hind
+    400016: lpaw_fore
+    400018: lpaw_hind
+    400020: lshoulder
+    400022: lstifle
+    400024: neck
+    400026: pelvis
+    400028: poll
+    400030: rfetlock_fore
+    400032: rfetlock_hind
+    400034: rhock
+    400036: rknee
+    400038: rpaw2_fore
+    400040: rpaw2_hind
+    400042: rpaw_fore
+    400044: rpaw_hind
+    400046: rshoulder
+    400048: rstifle
+    400050: tail
+    400052: wither
+    400054: //RootNode
+    400056: wolf
+    4300000: wolf
+    7400000: run
+    7400002: walk
+    9500000: //RootNode
+    13700000: wolf
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 151
+      lastFrame: 261
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: wither
+        weight: 1
+      - path: wither/lshoulder
+        weight: 1
+      - path: wither/lshoulder/lknee
+        weight: 1
+      - path: wither/lshoulder/lknee/lfetlock_fore
+        weight: 1
+      - path: wither/lshoulder/lknee/lfetlock_fore/lpaw_fore
+        weight: 1
+      - path: wither/lshoulder/lknee/lfetlock_fore/lpaw_fore/lpaw2_fore
+        weight: 1
+      - path: wither/neck
+        weight: 1
+      - path: wither/neck/poll
+        weight: 1
+      - path: wither/neck/poll/head
+        weight: 1
+      - path: wither/pelvis
+        weight: 1
+      - path: wither/pelvis/hips
+        weight: 1
+      - path: wither/pelvis/hips/lstifle
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock/lfetlock_hind
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock/lfetlock_hind/lpaw_hind
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock/lfetlock_hind/lpaw_hind/lpaw2_hind
+        weight: 1
+      - path: wither/pelvis/hips/rstifle
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock/rfetlock_hind
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock/rfetlock_hind/rpaw_hind
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock/rfetlock_hind/rpaw_hind/rpaw2_hind
+        weight: 1
+      - path: wither/pelvis/hips/tail
+        weight: 1
+      - path: wither/rshoulder
+        weight: 1
+      - path: wither/rshoulder/rknee
+        weight: 1
+      - path: wither/rshoulder/rknee/rfetlock_fore
+        weight: 1
+      - path: wither/rshoulder/rknee/rfetlock_fore/rpaw_fore
+        weight: 1
+      - path: wither/rshoulder/rknee/rfetlock_fore/rpaw_fore/rpaw2_fore
+        weight: 1
+      - path: wolf
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          preInfinity: 2
+          postInfinity: 2
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: wither
+        weight: 1
+      - path: wither/lshoulder
+        weight: 1
+      - path: wither/lshoulder/lknee
+        weight: 1
+      - path: wither/lshoulder/lknee/lfetlock_fore
+        weight: 1
+      - path: wither/lshoulder/lknee/lfetlock_fore/lpaw_fore
+        weight: 1
+      - path: wither/lshoulder/lknee/lfetlock_fore/lpaw_fore/lpaw2_fore
+        weight: 1
+      - path: wither/neck
+        weight: 1
+      - path: wither/neck/poll
+        weight: 1
+      - path: wither/neck/poll/head
+        weight: 1
+      - path: wither/pelvis
+        weight: 1
+      - path: wither/pelvis/hips
+        weight: 1
+      - path: wither/pelvis/hips/lstifle
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock/lfetlock_hind
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock/lfetlock_hind/lpaw_hind
+        weight: 1
+      - path: wither/pelvis/hips/lstifle/lhock/lfetlock_hind/lpaw_hind/lpaw2_hind
+        weight: 1
+      - path: wither/pelvis/hips/rstifle
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock/rfetlock_hind
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock/rfetlock_hind/rpaw_hind
+        weight: 1
+      - path: wither/pelvis/hips/rstifle/rhock/rfetlock_hind/rpaw_hind/rpaw2_hind
+        weight: 1
+      - path: wither/pelvis/hips/tail
+        weight: 1
+      - path: wither/rshoulder
+        weight: 1
+      - path: wither/rshoulder/rknee
+        weight: 1
+      - path: wither/rshoulder/rknee/rfetlock_fore
+        weight: 1
+      - path: wither/rshoulder/rknee/rfetlock_fore/rpaw_fore
+        weight: 1
+      - path: wither/rshoulder/rknee/rfetlock_fore/rpaw_fore/rpaw2_fore
+        weight: 1
+      - path: wolf
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

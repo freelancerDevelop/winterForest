@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efa6a9dddc4aaf4d8a457495ddcbc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 15
+  radius: 30
   hasCabin: 0
   wolfStart: 0
 --- !u!4 &494682451
@@ -1630,6 +1630,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
+--- !u!1 &742311689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 742311691}
+  - 114: {fileID: 742311690}
+  m_Layer: 0
+  m_Name: mountainwaypoint
+  m_TagString: waypoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &742311690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742311689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efa6a9dddc4aaf4d8a457495ddcbc43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 70
+  hasCabin: 1
+  wolfStart: 0
+--- !u!4 &742311691
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742311689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 168.5, y: 0, z: 41.7999992}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!4 &746902894 stripped
 Transform:
   m_PrefabParentObject: {fileID: 420468, guid: 2eef7d402a7f82b4c8d41e3f539c8869, type: 2}
@@ -1703,7 +1745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efa6a9dddc4aaf4d8a457495ddcbc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 32
+  radius: 20
   hasCabin: 0
   wolfStart: 0
 --- !u!4 &755978946
@@ -1745,7 +1787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efa6a9dddc4aaf4d8a457495ddcbc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 55
+  radius: 20
   hasCabin: 0
   wolfStart: 0
 --- !u!4 &869275107
@@ -1907,7 +1949,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 973246474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 110.5, y: 0, z: 319.399994}
+  m_LocalPosition: {x: 120.400002, y: 0, z: 319.399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3594,7 +3636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efa6a9dddc4aaf4d8a457495ddcbc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 60
+  radius: 35
   hasCabin: 1
   wolfStart: 0
 --- !u!4 &1253218670

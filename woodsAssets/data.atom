@@ -1,0 +1,1106 @@
+atomVersion 1.0;
+mayaVersion 2016;
+mayaSceneFile C:/Users/user/School/Games/woods/woodsAssets/scenes/deer.0001.mb;
+timeUnit ntsc;
+linearUnit cm;
+angularUnit deg;
+startTime 1;
+endTime 114;
+dagNode {
+  withers 1 4;
+  anim scale.scaleX scaleX 0;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim scale.scaleY scaleY 1;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim scale.scaleZ scaleZ 2;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim translate.translateX translateX 3;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 0.037797643 flat flat 0 1 0;
+      114.34 0.037797643 fixed fixed 0 1 0 0 1 0 1;
+      125 0.037797643 auto auto 1 1 0;
+      229 0.037797643 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim translate.translateY translateY 4;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 0.99612928 flat flat 0 1 0;
+      34.3 0.97906208 spline spline 0 1 0;
+      55.295 0.98942657 spline spline 0 1 0;
+      85.145 0.97176088 spline spline 0 1 0;
+      114.34 0.99612928 spline spline 0 1 0;
+      115.45 1.1638633 auto auto 1 1 0;
+      125 1.2181269 auto auto 1 1 0;
+      134.535 1.225858 fixed fixed 1 1 0 0 1 0 1;
+      229 1.2181269 fixed fixed 1 1 0 0.13936808 1 0.13936806 1;
+    }
+  }
+  anim translate.translateZ translateZ 5;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 0.33941203 flat flat 0 1 0;
+      114.34 0.33941203 fixed fixed 0 1 0 0 1 0 1;
+      125 0.33941203 auto auto 1 1 0;
+      229 0.33941203 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim visibility visibility 6;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 spline step 1 1 0;
+      229 1 fixed step 1 1 0 0 1;
+    }
+  }
+  anim rotate.rotateX rotateX 7;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 0 flat flat 0 1 0;
+      114.34 0 spline spline 0 1 0;
+      125 -4.6634241 auto auto 1 1 0;
+      134.535 -8.3355323 auto auto 1 1 0;
+      153.625 -5.6880994 auto auto 1 1 0;
+      171.75 -2.7398067 auto auto 1 1 0;
+      182.25 1.3122074 auto auto 1 1 0;
+      201.34 -0.98690844 fixed fixed 1 1 0 0 1 0 1;
+      229 -4.6634241 fixed fixed 1 1 0 -22.428506 1 -22.428504 1;
+    }
+  }
+  anim rotate.rotateY rotateY 8;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 0 flat flat 0 1 0;
+      114.34 0 spline spline 0 1 0;
+      125 -3.1290999 auto auto 1 1 0;
+      134.535 -5.5930391 auto auto 1 1 0;
+      153.625 -3.8254035 auto auto 1 1 0;
+      171.75 -1.8448978 auto auto 1 1 0;
+      182.25 0.88537328 auto auto 1 1 0;
+      201.34 -0.66617869 fixed fixed 1 1 0 0 1 0 1;
+      229 -3.1290999 fixed fixed 1 1 0 -15.480163 1 -15.480163 1;
+    }
+  }
+  anim rotate.rotateZ rotateZ 9;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0.48 0 flat flat 0 1 0;
+      114.34 0 spline spline 0 1 0;
+      125 0.2281972 auto auto 1 1 0;
+      134.535 0.40788594 auto auto 1 1 0;
+      153.625 0.2282768 auto auto 1 1 0;
+      171.75 0.10282915 auto auto 1 1 0;
+      182.25 0.060047551 auto auto 1 1 0;
+      201.34 0.028256164 fixed fixed 1 1 0 -0.072114698 1 -0.072114698 1;
+      229 0.2281972 fixed fixed 1 1 0 1.1570671 1 1.1570672 1;
+    }
+  }
+}
+dagNode {
+  ikHandle1 1 0;
+  anim translate.translateX translateX 0;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0.16934544 flat flat 0 1 0;
+      17.86 0.16934544 spline spline 0 1 0;
+      44.69 0.16934544 spline spline 0 1 0;
+      53.62 0.16934564 spline spline 0 1 0;
+      62.86 0.16934564 spline spline 0 1 0;
+      69.41 0.16934564 spline spline 0 1 0;
+      78.385 0.16934563 spline spline 0 1 0;
+      85.835 0.16934563 spline spline 0 1 0;
+      93.375 0.16934562 spline spline 0 1 0;
+      100.81 0.16934562 spline spline 0 1 0;
+      114.34 0.16934544 spline spline 0 1 0;
+      115.45 0.16934547 auto auto 1 1 0;
+      125 0.16934547 auto auto 1 1 0;
+      134.535 0.16934553 auto auto 1 1 0;
+      144.075 0.16934558 auto auto 1 1 0;
+      153.625 0.16047809 auto auto 1 1 0;
+      163.16 0.16085909 auto auto 1 1 0;
+      171.75 0.16200132 auto auto 1 1 0;
+      182.25 0.16352761 auto auto 1 1 0;
+      201.34 0.16644238 fixed fixed 1 1 0 0.00698701 1 0.0069870134 1;
+      229 0.16934547 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim translate.translateY translateY 1;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0.15935817 flat flat 0 1 0;
+      8.945 0.30572344 spline spline 0 1 0;
+      17.86 0.35318547 spline spline 0 1 0;
+      26.795 0.38942526 spline spline 0 1 0;
+      35.735 0.36420209 spline spline 0 1 0;
+      44.69 0.28283801 spline spline 0 1 0;
+      53.62 0.121564 spline spline 0 1 0;
+      57.18 0.10597294 spline spline 0 1 0;
+      62.86 0.10580576 spline spline 0 1 0;
+      69.41 0.098288325 spline spline 0 1 0;
+      78.385 0.10246368 spline spline 0 1 0;
+      85.835 0.1232416 spline spline 0 1 0;
+      93.375 0.13748727 spline spline 0 1 0;
+      100.81 0.16428994 spline spline 0 1 0;
+      114.34 0.15935817 spline spline 0 1 0;
+      115.45 0.3051587 auto auto 1 1 0;
+      125 0.30515872 auto auto 1 1 0;
+      134.535 0.32635496 auto auto 1 1 0;
+      144.075 0.39891525 auto auto 1 1 0;
+      153.625 0.57527287 auto auto 1 1 0;
+      163.16 0.54563718 auto auto 1 1 0;
+      171.75 0.58071359 auto auto 1 1 0;
+      182.25 0.58521731 auto auto 1 1 0;
+      201.34 0.37364717 fixed fixed 1 1 0 -0.33633527 1 -0.33633508 1;
+      229 0.30515872 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim translate.translateZ translateZ 2;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 -0.77785381 flat flat 0 1 0;
+      8.945 -0.82367974 spline spline 0 1 0;
+      17.86 -0.86467468 spline spline 0 1 0;
+      26.795 -0.6251213 spline spline 0 1 0;
+      35.735 -0.41473553 spline spline 0 1 0;
+      44.69 -0.17794771 spline spline 0 1 0;
+      53.62 -0.16883006 spline spline 0 1 0;
+      57.18 -0.22272024 spline spline 0 1 0;
+      62.86 -0.32192718 spline spline 0 1 0;
+      69.41 -0.45119968 spline spline 0 1 0;
+      78.385 -0.53101885 spline spline 0 1 0;
+      85.835 -0.61238034 spline spline 0 1 0;
+      93.375 -0.6582319 spline spline 0 1 0;
+      100.81 -0.7080754 spline spline 0 1 0;
+      114.34 -0.77785381 spline spline 0 1 0;
+      115.45 -0.17808206 auto auto 1 1 0;
+      125 -0.41660862 auto auto 1 1 0;
+      134.535 -0.57428597 auto auto 1 1 0;
+      144.075 -0.72438636 auto auto 1 1 0;
+      153.625 -0.97334095 auto auto 1 1 0;
+      163.16 -0.9175791 auto auto 1 1 0;
+      171.75 -0.74136323 auto auto 1 1 0;
+      182.25 -0.34006155 auto auto 1 1 0;
+      201.34 -0.083115066 fixed fixed 1 1 0 0 1 0 1;
+      229 -0.41660862 fixed fixed 1 1 0 -1.1892877 1 -1.1892877 1;
+    }
+  }
+  anim visibility visibility 3;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim rotate.rotateX rotateX 4;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0.19882927 flat flat 0 1 0;
+      8.945 0.35715066 spline spline 0 1 0;
+      17.86 -2.8588843 spline spline 0 1 0;
+      26.795 -3.9380842 spline spline 0 1 0;
+      35.735 -6.3548361 spline spline 0 1 0;
+      44.69 -6.678449 spline spline 0 1 0;
+      53.62 -4.7900902 spline spline 0 1 0;
+      57.18 -4.4789818 spline spline 0 1 0;
+      62.86 -4.1534286 spline spline 0 1 0;
+      69.41 -2.8768496 spline spline 0 1 0;
+      78.385 -2.6458574 spline spline 0 1 0;
+      85.835 -2.2857342 spline spline 0 1 0;
+      100.81 -1.770251 spline spline 0 1 0;
+      114.34 0.19882927 spline spline 0 1 0;
+      115.45 -5.0008935 auto auto 1 1 0;
+      125 -3.2800224 auto auto 1 1 0;
+      134.535 -1.0848861 auto auto 1 1 0;
+      144.075 -0.060563584 auto auto 1 1 0;
+      153.625 0.64804662 auto auto 1 1 0;
+      163.16 -1.1674869 auto auto 1 1 0;
+      171.75 -3.3362776 auto auto 1 1 0;
+      182.25 -11.057499 auto auto 1 1 0;
+      201.34 -5.1754346 fixed fixed 1 1 0 1.0479663 1 1.047966 1;
+      229 -3.2800224 fixed fixed 1 1 0 11.595448 1 11.595448 1;
+    }
+  }
+  anim rotate.rotateY rotateY 5;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 7.9313844 flat flat 0 1 0;
+      8.945 9.6934932 spline spline 0 1 0;
+      17.86 9.1520235 spline spline 0 1 0;
+      26.795 -26.602405 spline spline 0 1 0;
+      35.735 -44.579076 spline spline 0 1 0;
+      44.69 -48.307179 spline spline 0 1 0;
+      53.62 -28.686978 spline spline 0 1 0;
+      57.18 -27.494321 spline spline 0 1 0;
+      62.86 -26.092491 spline spline 0 1 0;
+      69.41 -7.1569533 spline spline 0 1 0;
+      78.385 -5.5047697 spline spline 0 1 0;
+      85.835 0.087644727 spline spline 0 1 0;
+      93.375 4.5562894 spline spline 0 1 0;
+      100.81 8.1536487 spline spline 0 1 0;
+      114.34 7.9313844 spline spline 0 1 0;
+      115.45 -41.962661 auto auto 1 1 0;
+      125 -27.623318 auto auto 1 1 0;
+      134.535 -3.8223196 auto auto 1 1 0;
+      144.075 16.535154 auto auto 1 1 0;
+      153.625 37.623531 auto auto 1 1 0;
+      163.16 29.510699 auto auto 1 1 0;
+      171.75 5.7442462 auto auto 1 1 0;
+      182.25 -42.706058 auto auto 1 1 0;
+      201.34 -29.339448 fixed fixed 1 1 0 0 1 0 1;
+      229 -27.623318 fixed fixed 1 1 0 63.417132 1 63.417132 1;
+    }
+  }
+  anim rotate.rotateZ rotateZ 6;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 -88.301578 flat flat 0 1 0;
+      8.945 -88.332702 spline spline 0 1 0;
+      17.86 -91.797125 spline spline 0 1 0;
+      26.795 -88.422235 spline spline 0 1 0;
+      35.735 -86.036684 spline spline 0 1 0;
+      44.69 -86.721515 spline spline 0 1 0;
+      53.62 -85.643841 spline spline 0 1 0;
+      62.86 -85.636472 spline spline 0 1 0;
+      69.41 -86.33023 spline spline 0 1 0;
+      78.385 -85.493411 spline spline 0 1 0;
+      85.835 -85.406145 spline spline 0 1 0;
+      93.375 -85.448494 spline spline 0 1 0;
+      100.81 -85.33851 spline spline 0 1 0;
+      114.34 -88.301578 spline spline 0 1 0;
+      115.45 -84.951237 auto auto 1 1 0;
+      125 -85.115572 auto auto 1 1 0;
+      134.535 -85.932725 auto auto 1 1 0;
+      144.075 -86.332474 auto auto 1 1 0;
+      153.625 -86.457169 auto auto 1 1 0;
+      163.16 -86.625104 auto auto 1 1 0;
+      171.75 -83.810341 auto auto 1 1 0;
+      182.25 -78.850179 auto auto 1 1 0;
+      201.34 -87.682933 fixed fixed 1 1 0 0 1 0 1;
+      229 -85.115572 fixed fixed 1 1 0 -2.9439673 1 -2.9439676 1;
+    }
+  }
+  anim scale.scaleX scaleX 7;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim scale.scaleY scaleY 8;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim scale.scaleZ scaleZ 9;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim poleVector.poleVectorX poleVectorX 10;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim poleVector.poleVectorY poleVectorY 11;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim poleVector.poleVectorZ poleVectorZ 12;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim offset offset 13;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim roll roll 14;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim twist twist 15;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim ikBlend ikBlend 16;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+}
+dagNode {
+  ikHandle2 1 0;
+  anim translate.translateX translateX 0;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 -0.075286154 flat flat 0 1 0;
+      8.945 -0.075286145 spline spline 0 1 0;
+      35.735 -0.075286145 spline spline 0 1 0;
+      44.69 -0.075286141 spline spline 0 1 0;
+      53.62 -0.075286141 spline spline 0 1 0;
+      62.86 -0.075286141 spline spline 0 1 0;
+      114.34 -0.075286154 fixed fixed 0 1 0 0 1 0 1;
+      125 -0.075286154 auto auto 1 1 0;
+      229 -0.075286154 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim translate.translateY translateY 1;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0.11205333 flat flat 0 1 0;
+      8.945 0.11119313 spline spline 0 1 0;
+      35.735 0.11764426 spline spline 0 1 0;
+      44.69 0.13170717 spline spline 0 1 0;
+      53.62 0.15792109 spline spline 0 1 0;
+      56.6 0.17714204 spline spline 0 1 0;
+      62.86 0.25162698 spline spline 0 1 0;
+      70.17 0.37076356 spline spline 0 1 0;
+      78.385 0.35308438 spline spline 0 1 0;
+      85.835 0.39721009 spline spline 0 1 0;
+      93.375 0.26571313 spline spline 0 1 0;
+      100.81 0.19963543 spline spline 0 1 0;
+      114.34 0.11200107 spline spline 0 1 0;
+      115.45 0.55043166 auto auto 1 1 0;
+      125 0.40814369 auto auto 1 1 0;
+      134.535 0.33996719 auto auto 1 1 0;
+      163.16 0.44806514 auto auto 1 1 0;
+      171.75 0.5496123 auto auto 1 1 0;
+      182.25 0.58670814 auto auto 1 1 0;
+      210.875 0.52008814 fixed fixed 1 1 0 0 1 0 1;
+      229 0.40814369 fixed fixed 1 1 0 -0.63181758 1 -0.63181763 1;
+    }
+  }
+  anim translate.translateZ translateZ 2;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 -0.41809762 flat flat 0 1 0;
+      8.945 -0.44576098 spline spline 0 1 0;
+      35.735 -0.5871247 spline spline 0 1 0;
+      44.69 -0.66917052 spline spline 0 1 0;
+      53.62 -0.68440684 spline spline 0 1 0;
+      56.6 -0.73104895 spline spline 0 1 0;
+      62.86 -0.81157561 spline spline 0 1 0;
+      70.17 -0.76031331 spline spline 0 1 0;
+      78.385 -0.60398607 spline spline 0 1 0;
+      85.835 -0.32423254 spline spline 0 1 0;
+      93.375 -0.12869914 spline spline 0 1 0;
+      100.81 -0.099232005 spline spline 0 1 0;
+      114.34 -0.41809762 spline spline 0 1 0;
+      115.45 0.071140887 auto auto 1 1 0;
+      125 0.080844755 auto auto 1 1 0;
+      134.535 0.012130614 auto auto 1 1 0;
+      144.075 -0.18358889 auto auto 1 1 0;
+      153.625 -0.67405165 auto auto 1 1 0;
+      163.16 -0.79597107 auto auto 1 1 0;
+      171.75 -0.9366941 auto auto 1 1 0;
+      182.25 -0.71525309 auto auto 1 1 0;
+      210.875 -0.05024601 fixed fixed 1 1 0 0.94434238 1 0.94434238 1;
+      229 0.080844755 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim visibility visibility 3;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 spline step 1 1 0;
+      229 1 fixed step 1 1 0 0 1;
+    }
+  }
+  anim rotate.rotateX rotateX 4;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0.16945004 flat flat 0 1 0;
+      8.945 0.13554327 spline spline 0 1 0;
+      35.735 0.028774867 spline spline 0 1 0;
+      44.69 0.00047740731 spline spline 0 1 0;
+      53.62 0.058126483 spline spline 0 1 0;
+      62.86 0.31255012 spline spline 0 1 0;
+      114.34 0.16945004 fixed fixed 0 1 0 -0.049065694 1 -0.049065694 1;
+      125 0.16193961 auto auto 1 1 0;
+      229 0.16193961 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim rotate.rotateY rotateY 5;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 185.67005 spline spline 0 1 0;
+      8.165 188.89925 spline spline 0 1 0;
+      32.615 188.09978 spline spline 0 1 0;
+      40.785 187.44003 spline spline 0 1 0;
+      48.935 194.08489 spline spline 0 1 0;
+      57.37 202.94318 spline spline 0 1 0;
+      104.355 185.67005 spline spline 0 1 0;
+      125 185.67005 auto auto 1 1 0;
+      229 185.67005 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim rotate.rotateZ rotateZ 6;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 89.203458 flat flat 0 1 0;
+      8.945 88.15259 spline spline 0 1 0;
+      35.735 87.718825 spline spline 0 1 0;
+      44.69 87.757973 spline spline 0 1 0;
+      53.62 86.150081 spline spline 0 1 0;
+      62.86 84.66453 spline spline 0 1 0;
+      114.34 89.203458 fixed fixed 0 1 0 1.5559103 1 1.5559057 1;
+      125 89.441677 auto auto 1 1 0;
+      229 89.441677 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim scale.scaleX scaleX 7;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim scale.scaleY scaleY 8;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim scale.scaleZ scaleZ 9;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim poleVector.poleVectorX poleVectorX 10;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      125 0 auto auto 1 1 0;
+      229 0 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim poleVector.poleVectorY poleVectorY 11;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      125 0 auto auto 1 1 0;
+      229 0 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim poleVector.poleVectorZ poleVectorZ 12;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim offset offset 13;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      125 0 auto auto 1 1 0;
+      229 0 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim roll roll 14;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      125 0 auto auto 1 1 0;
+      229 0 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim twist twist 15;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      125 0 auto auto 1 1 0;
+      229 0 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim ikBlend ikBlend 16;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      125 1 auto auto 1 1 0;
+      229 1 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+}
+dagNode {
+  ikHandle3 1 0;
+  anim translate.translateX translateX 0;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 -0.0084489312 flat flat 0 1 0;
+      0.48 -0.0075721069 flat flat 0 1 0;
+      35.735 0.062769318 spline spline 0 1 0;
+      44.69 0.0068551521 spline spline 0 1 0;
+      62.86 -0.10893997 spline spline 0 1 0;
+      114.34 -0.0075721069 spline spline 0 1 0;
+      115.45 -0.0075720956 auto auto 1 1 0;
+      125 -0.0075719697 auto auto 1 1 0;
+      163.16 -0.0075719442 auto auto 1 1 0;
+      201.34 -0.0075717101 fixed fixed 1 1 0 0 1 0 1;
+      229 -0.0075719697 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim translate.translateY translateY 1;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0.84201042 flat flat 0 1 0;
+      0.48 0.84178503 flat flat 0 1 0;
+      26.795 0.80769589 spline spline 0 1 0;
+      35.735 0.83974269 spline spline 0 1 0;
+      44.69 0.86586518 spline spline 0 1 0;
+      62.86 0.82332311 spline spline 0 1 0;
+      114.34 0.84178503 spline spline 0 1 0;
+      115.45 1.2962392 auto auto 1 1 0;
+      125 1.3346733 auto auto 1 1 0;
+      163.16 1.2767672 auto auto 1 1 0;
+      201.34 1.3668173 fixed fixed 1 1 0 0 1 0 1;
+      229 1.3346733 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim translate.translateZ translateZ 2;
+  animData {
+    input time;
+    output linear;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1.0913511 flat flat 0 1 0;
+      0.48 1.0913511 flat flat 0 1 0;
+      26.795 1.0663382 spline spline 0 1 0;
+      35.735 1.0834477 spline spline 0 1 0;
+      44.69 1.0663382 spline spline 0 1 0;
+      62.86 1.0663373 spline spline 0 1 0;
+      114.34 1.0913511 spline spline 0 1 0;
+      115.45 1.1419852 auto auto 1 1 0;
+      125 1.1093379 auto auto 1 1 0;
+      163.16 1.126307 auto auto 1 1 0;
+      201.34 1.0888454 fixed fixed 1 1 0 0 1 0 1;
+      229 1.1093379 fixed fixed 1 1 0 0 1 0 1;
+    }
+  }
+  anim visibility visibility 3;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim rotate.rotateX rotateX 4;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 95.535358 flat flat 0 1 0;
+      0.48 95.416831 flat flat 0 1 0;
+      26.795 82.300764 spline spline 0 1 0;
+      35.735 87.482582 spline spline 0 1 0;
+      44.69 93.998642 spline spline 0 1 0;
+      62.86 107.64264 spline spline 0 1 0;
+      114.34 95.416831 spline spline 0 1 0;
+      115.45 119.6567 auto auto 1 1 0;
+      125 110.69018 auto auto 1 1 0;
+      163.16 100.11421 auto auto 1 1 0;
+      201.34 108.74123 fixed fixed 1 1 0 16.30889 1 16.308876 1;
+      229 110.69018 fixed fixed 1 1 0 -22.274502 1 -22.2745 1;
+    }
+  }
+  anim rotate.rotateY rotateY 5;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 -41.003675 flat flat 0 1 0;
+      0.48 -41.062093 flat flat 0 1 0;
+      26.795 -33.345954 spline spline 0 1 0;
+      35.735 -35.940356 spline spline 0 1 0;
+      44.69 -29.015714 spline spline 0 1 0;
+      62.86 -36.799433 spline spline 0 1 0;
+      114.34 -41.062093 spline spline 0 1 0;
+      115.45 -80.168674 auto auto 1 1 0;
+      125 -75.082804 auto auto 1 1 0;
+      163.16 -61.972526 auto auto 1 1 0;
+      201.34 -71.414657 fixed fixed 1 1 0 -15.239335 1 -15.239351 1;
+      229 -75.082804 fixed fixed 1 1 0 20.876383 1 20.876383 1;
+    }
+  }
+  anim rotate.rotateZ rotateZ 6;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 -95.58316 flat flat 0 1 0;
+      0.48 -95.445348 flat flat 0 1 0;
+      26.795 -82.284999 spline spline 0 1 0;
+      35.735 -86.766456 spline spline 0 1 0;
+      44.69 -92.108665 spline spline 0 1 0;
+      62.86 -105.85126 spline spline 0 1 0;
+      114.34 -95.445348 spline spline 0 1 0;
+      115.45 -120.92488 auto auto 1 1 0;
+      125 -111.55583 auto auto 1 1 0;
+      163.16 -101.7648 auto auto 1 1 0;
+      201.34 -110.67789 fixed fixed 1 1 0 -16.006239 1 -16.006239 1;
+      229 -111.55583 fixed fixed 1 1 0 21.880123 1 21.880123 1;
+    }
+  }
+  anim scale.scaleX scaleX 7;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim scale.scaleY scaleY 8;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim scale.scaleZ scaleZ 9;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim poleVector.poleVectorX poleVectorX 10;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      0.48 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim poleVector.poleVectorY poleVectorY 11;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      0.48 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim poleVector.poleVectorZ poleVectorZ 12;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+  anim offset offset 13;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      0.48 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim roll roll 14;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      0.48 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim twist twist 15;
+  animData {
+    input time;
+    output angular;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 0 flat flat 0 1 0;
+      0.48 0 flat flat 0 1 0;
+      114.34 0 fixed fixed 0 1 0 0 1 0 1;
+      229 0 flat flat 1 1 0;
+    }
+  }
+  anim ikBlend ikBlend 16;
+  animData {
+    input time;
+    output unitless;
+    weighted 0;
+    preInfinity constant;
+    postInfinity constant;
+    keys {
+      0 1 flat flat 0 1 0;
+      0.48 1 flat flat 0 1 0;
+      114.34 1 fixed fixed 0 1 0 0 1 0 1;
+      229 1 flat flat 1 1 0;
+    }
+  }
+}

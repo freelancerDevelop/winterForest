@@ -10,6 +10,8 @@ public class wolfScript:Flocker {
 
     public bool isHerder; //does this wolf herd or hunt when deer are found?
     public int id;
+    public float runMaxSpeed;
+    public float walkMaxSpeed;
     public enum WolfState {TRACK, HUNT, EAT};
     public WolfState state = WolfState.TRACK;
 
@@ -33,6 +35,7 @@ public class wolfScript:Flocker {
         switch (state) {
 		case WolfState.TRACK:
 			{
+                maxSpeed = walkMaxSpeed;
 				//only the leader needs to steer
 				//tracking behavior
 				//wander, make wandering fight a little with finding the deer
@@ -87,13 +90,14 @@ public class wolfScript:Flocker {
 			{
                 if (isHerder) //if you're supposed to be containing, contain!
                 {
+                    maxSpeed = runMaxSpeed*1.5f;
                     //Debug.Log("herding");
                     steeringForce += herd();
                 }
                 else //otherwise, try to catch the nearest deer
                 {
                     //Debug.Log("hunting");
-
+                    maxSpeed = runMaxSpeed;
                     int nearestIndex;
                     if (huntFlock != null)
                         nearestIndex = getNearest(huntFlock.Flockers);
@@ -131,6 +135,10 @@ public class wolfScript:Flocker {
                             return;
                         }
                     }
+                foreach (GameObject obstacle in gm.Obstacles)
+                {
+                    steeringForce += avoid(obstacle) * avoidWeight;
+                }
 				break;
 			}
 		case WolfState.EAT:
@@ -148,6 +156,10 @@ public class wolfScript:Flocker {
                     time = 0.0f;
                     
 				}
+                foreach (GameObject obstacle in gm.Obstacles)
+                {
+                    steeringForce += avoid(obstacle) * avoidWeight;
+                }
                 break;
 			}
 		}
@@ -162,8 +174,29 @@ public class wolfScript:Flocker {
             if(deer != null && (deer.transform.position - huntFlock.Centroid).sqrMagnitude > herdDistance*herdDistance)
             {
                 Vector3 seekPoint = deer.transform.position + (deer.transform.position - huntFlock.Centroid)*herdBuffer;
-	            return seek(seekPoint);
+                Vector3 vecToCenter = Vector3.zero;
+                float rad;
+                Vector3 force = Vector3.zero;
+
+                vecToCenter = deer.transform.position - this.transform.position;
+                rad = deer.radius;
+                if (vecToCenter.sqrMagnitude > Mathf.Pow(radius + rad + herdBuffer, 2))
+                    return seek(seekPoint);
+                if (Vector3.Dot(vecToCenter, this.transform.forward) < 0)
+                    return seek(seekPoint);
+                if (Mathf.Abs(Vector3.Dot(vecToCenter, this.transform.right)) > this.radius + rad + 1) //give ourselves a bit of a buffer
+                    return seek(seekPoint);
+
+                //if we get to this point, we are on a collision course and need to turn
+                if (Vector3.Dot(vecToCenter, this.transform.right) > 0)
+                    force+= this.transform.right * -1 * maxSpeed *herdBuffer * herdBuffer / vecToCenter.sqrMagnitude;
+                else
+                    force+= this.transform.right * maxSpeed * herdBuffer * herdBuffer / vecToCenter.sqrMagnitude;
+
+                return seek(seekPoint) + force;
             }
+
+
         }
         
 

@@ -18,7 +18,7 @@ abstract public class Vehicle : MonoBehaviour {
 	protected Vector3 velocity;
 
     //values to be set in the inspector
-	public float maxSpeed; //caps the magnitude of the velocity vector
+	protected float maxSpeed; //caps the magnitude of the velocity vector
 	public float maxForce; //caps the applied force vector
 	public float mass; //inversely affects the impact of force on acceleration
 	public float radius; //radius of the theoretical bounding sphere on the object
