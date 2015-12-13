@@ -39,8 +39,8 @@ public class deerScript : Flocker {
         {
             case DeerState.GRAZE:
                 {
-                    if (anim.GetCurrentAnimatorStateInfo(0).nameHash == runHash)
-                        anim.SetTrigger("walkTrigger");
+                    //if (anim.GetCurrentAnimatorStateInfo(0).nameHash == runHash)
+                        //anim.SetTrigger("walkTrigger");
                     maxSpeed = walkMaxSpeed;
 
                     if ((this.transform.position - flock.seekpoints[flock.seekindex]).sqrMagnitude < 4)
@@ -89,8 +89,8 @@ public class deerScript : Flocker {
 		//fleeing
             case DeerState.FLEE:
             {
-                if (anim.GetCurrentAnimatorStateInfo(0).nameHash == walkHash)
-                    anim.SetTrigger("runTrigger");
+                //if (anim.GetCurrentAnimatorStateInfo(0).nameHash == walkHash)
+                    //anim.SetTrigger("runTrigger");
                 maxSpeed = runMaxSpeed;
                 bool safe = true;
                 foreach(Flocker wolf in gm.Wolves.Flockers)

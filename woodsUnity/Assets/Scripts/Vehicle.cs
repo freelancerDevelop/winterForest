@@ -30,9 +30,9 @@ abstract public class Vehicle : MonoBehaviour {
 
 
     protected GameManager gm;
-    protected Animator anim;
-    protected int runHash = Animator.StringToHash("run");
-    protected int walkHash = Animator.StringToHash("walk");
+    //protected Animator anim;
+    //protected int runHash = Animator.StringToHash("run");
+    //protected int walkHash = Animator.StringToHash("walk");
 
 	//access to character controller to move the model
 	CharacterController charControl;
@@ -55,7 +55,7 @@ abstract public class Vehicle : MonoBehaviour {
         else
             radius = lenZ / 2;
 
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
 	}
 
 	
