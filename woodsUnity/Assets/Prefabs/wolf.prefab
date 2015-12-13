@@ -13,6 +13,7 @@ GameObject:
   - 143: {fileID: 14318222}
   - 114: {fileID: 11443158}
   - 33: {fileID: 3333592}
+  - 111: {fileID: 11171660}
   m_Layer: 0
   m_Name: wolf
   m_TagString: wolf
@@ -75,6 +76,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &11171660
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172626}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400002, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
+  - {fileID: 7400002, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11443158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,6 +155,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Animations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: followDistance
       value: 2
@@ -266,6 +287,18 @@ Prefab:
       propertyPath: walkMaxSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400002, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 172626}

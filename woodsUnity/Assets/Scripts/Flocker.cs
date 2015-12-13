@@ -79,7 +79,7 @@ public class Flocker : Vehicle {
             desired += vecToCenter * -1;
         }
         if (desired != Vector3.zero)
-            return (desired - this.velocity);
+            return desired;
         else
             return desired;
     }
@@ -92,7 +92,7 @@ public class Flocker : Vehicle {
     public Vector3 alignment(Vector3 alignVector)
     {
 
-        return (alignVector - this.velocity); //the flock's velocity is our desired velocity so don't need
+        return (alignVector - this.velocity).normalized*maxSpeed; //the flock's velocity is our desired velocity so don't need
                                                 //more than this
     }
     /// <summary>

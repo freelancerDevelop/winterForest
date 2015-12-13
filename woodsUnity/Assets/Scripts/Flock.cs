@@ -40,7 +40,7 @@ public class Flock{
         seekpoints = seekPoints;
         for (int i = 0; i < numFlock; i++)
         {
-            GameObject newflocker = (GameObject) Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), prefab.GetComponent<BoxCollider>().size.y, Random.Range(0, 6)), Quaternion.identity);
+            GameObject newflocker = (GameObject)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 1.280173f, Random.Range(0, 6)), Quaternion.identity);
             flockers.Add(newflocker.GetComponent<Flocker>());
             flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
             flockers[i].GetComponent<deerScript>().id = i;
@@ -60,7 +60,7 @@ public class Flock{
 
         for (int i = 0; i < numFlock; i++)
         {
-            GameObject newThing = (GameObject)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(4, 6), 1.8f, Random.Range(4, 6)), Quaternion.identity);
+            GameObject newThing = (GameObject)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(4, 6), 1.656772f, Random.Range(4, 6)), Quaternion.identity);
             flockers.Add(newThing.GetComponent<Flocker>());
             flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
             flockers[i].GetComponent<wolfScript>().id = i;

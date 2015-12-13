@@ -57,8 +57,7 @@ public class deerScript : Flocker {
                    
                     temp += cohesion(flock.Centroid) * cohesionWeight; //only non-zero conditionally
                     temp += separation(separateDistance) * separationWeight; //also only non-zero conditionally   
-                    if(temp == Vector3.zero)
-                        steeringForce += seek(flock.seekpoints[flock.seekindex]) * seekWeight;
+                    steeringForce += seek(flock.seekpoints[flock.seekindex]) * seekWeight;
                     temp += alignment(flock.FlockDirection) * alignmentWeight; //will always apply a force if called
 
                     foreach (GameObject obstacle in gm.Obstacles)
@@ -68,9 +67,6 @@ public class deerScript : Flocker {
 
                     steeringForce += temp;
 
-
-
-                    steeringForce += temp;
                     steeringForce += flowFollow() * flowWeight;
                     int index = getNearest(gm.Wolves.Flockers);
                     if (index > -1)

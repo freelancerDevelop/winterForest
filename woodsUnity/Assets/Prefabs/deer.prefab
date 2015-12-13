@@ -12,8 +12,7 @@ GameObject:
   - 143: {fileID: 14330652}
   - 114: {fileID: 11430922}
   - 33: {fileID: 3360198}
-  - 23: {fileID: 2384628}
-  - 95: {fileID: 9567056}
+  - 137: {fileID: 13753814}
   m_Layer: 0
   m_Name: deer
   m_TagString: deer
@@ -33,8 +32,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2384628
-MeshRenderer:
+--- !u!33 &3360198
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126408}
+  m_Mesh: {fileID: 4300000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
+--- !u!65 &6567204
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .665919185, y: 1.79517043, z: 3.16270828}
+  m_Center: {x: -.566666007, y: -.244480669, z: -2.14680624}
+--- !u!114 &11430922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxForce: 10
+  mass: 1
+  radius: 2
+  safeDistance: 2
+  arrivalDistance: 8
+  pursueTimestep: 1
+  evadeTimestep: 1
+  seekWeight: 4
+  avoidWeight: 4
+  separateDistance: 8
+  separationWeight: 1
+  cohesionWeight: 4
+  alignmentWeight: 4
+  boundsWeight: 40
+  wanderWeight: 0
+  flockRadius: 20
+  leaderRadius: 0
+  state: 0
+  walkMaxSpeed: 4
+  runMaxSpeed: 7
+  flowWeight: 0
+  id: 0
+  regroupRadius: 100
+  fleedistance: 75
+--- !u!137 &13753814
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -57,77 +110,17 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3360198
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
-  m_Mesh: {fileID: 4300000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
---- !u!65 &6567204
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .443946123, y: 1.19678032, z: 2.10847211}
-  m_Center: {x: -.377777338, y: -.162987128, z: -1.4312042}
---- !u!95 &9567056
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 924931fc9d11ad94abb2a3319c094178, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11430922
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxForce: 10
-  mass: 1
-  radius: 2
-  safeDistance: 2
-  arrivalDistance: 8
-  pursueTimestep: 1
-  evadeTimestep: 1
-  seekWeight: 8
-  avoidWeight: 4
-  separateDistance: 8
-  separationWeight: 8
-  cohesionWeight: 4
-  alignmentWeight: 4
-  boundsWeight: 40
-  wanderWeight: 0
-  flockRadius: 20
-  leaderRadius: 0
-  state: 0
-  walkMaxSpeed: 4
-  runMaxSpeed: 7
-  flowWeight: 0
-  id: 0
-  regroupRadius: 100
-  fleedistance: 75
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_Mesh: {fileID: 4300000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 400050, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
+  m_AABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_DirtyAABB: 1
 --- !u!143 &14330652
 CharacterController:
   m_ObjectHideFlags: 1
@@ -152,6 +145,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Animations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: arrivalDistance
       value: 8
@@ -198,7 +195,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separationWeight
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separateDistance
@@ -206,7 +203,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: seekWeight
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: avoidWeight
@@ -280,6 +277,18 @@ Prefab:
       propertyPath: regroupRadius
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400002, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_PlayAutomatically
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 400050, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 126408}
