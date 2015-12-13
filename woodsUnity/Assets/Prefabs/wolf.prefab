@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 423702}
-  - 33: {fileID: 3312290}
   - 65: {fileID: 6522260}
   - 23: {fileID: 2387182}
   - 143: {fileID: 14318222}
   - 114: {fileID: 11443158}
+  - 33: {fileID: 3333592}
   m_Layer: 0
   m_Name: wolf
   m_TagString: wolf
@@ -42,7 +42,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b0367e0d2020715409bbddc55de78f79, type: 2}
+  - {fileID: 2100000, guid: 07a468b59082fc3488b0cd5e8ce32a1e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -56,13 +56,13 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3312290
+--- !u!33 &3333592
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172626}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
 --- !u!65 &6522260
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -86,7 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a61e88381054b2049873e1402091cd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
   maxForce: 5
   mass: 1
   radius: 0
@@ -94,18 +93,20 @@ MonoBehaviour:
   arrivalDistance: 5
   pursueTimestep: 1
   evadeTimestep: 1
-  seekWeight: 4
-  avoidWeight: 4
+  seekWeight: 10
+  avoidWeight: 6
   separateDistance: 5
   separationWeight: 5
   cohesionWeight: 4
   alignmentWeight: 4
-  boundsWeight: 4
+  boundsWeight: 20
   wanderWeight: 4
   flockRadius: 4
   leaderRadius: 0
   isHerder: 0
   id: 0
+  runMaxSpeed: 9
+  walkMaxSpeed: 4
   state: 0
   followWeight: 8
   feedtime: 20
@@ -183,11 +184,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: seekWeight
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: avoidWeight
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cohesionWeight
@@ -199,7 +200,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: boundsWeight
-      value: 4
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: wanderWeight
@@ -236,6 +237,34 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: wolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: edb2ccbcd276e9947bea4ff17924ee2c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07a468b59082fc3488b0cd5e8ce32a1e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: runMaxSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: walkMaxSpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

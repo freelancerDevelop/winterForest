@@ -29,8 +29,9 @@ public class GameManager : MonoBehaviour {
     public List<Flock> herds; //the multiple herds of deer
     private Flock wolves; //the pack of wolves
     private Vector3 wolfStart;
-    private List<Vector3> deerStart;
-    public float BOUNDS_RADIUS;
+    private List<GameObject> deerStart;
+    public float BOUNDS_ZRAD;
+    public float BOUNDS_XRAD;
     public Vector3 BOUNDS_CENTER;
 
     public Flock Wolves
@@ -80,24 +81,36 @@ public class GameManager : MonoBehaviour {
         terrainWidth = (int)terrain.terrainData.size.z;
         terrainLength = (int)terrain.terrainData.size.x;
         BOUNDS_CENTER = new Vector3(terrainLength / 2, 0, terrainWidth / 2);
-        BOUNDS_RADIUS = 200.0f;
+        BOUNDS_ZRAD = 200.0f;
+        BOUNDS_XRAD = 100.0f;
         obstacles = new List<GameObject>();
-        deerStart = new List<Vector3>();
+        deerStart = new List<GameObject>();
         flowField = new Vector3[terrainLength, terrainWidth];
         createFlowField();
         determineStartingLocations();
         wolves = new Flock(Random.Range(minWolves, maxWolves + 1), wolfStart, wolfPrefab, numHerders);
-        herds = new List<Flock>();      
-
+        herds = new List<Flock>();
+        int index;
+        List<int> usedIndices = new List<int>();
 		for (int i = 0; i < numHerds; i++) {
 			//make the herds
-            herds.Add(new Flock(Random.Range(minDeer,maxDeer+1),deerStart[Random.Range(0,deerStart.Count)],deerPrefab));
-
+             do
+                index = Random.Range(0, deerStart.Count);
+             while(usedIndices.Contains(index));
+            Vector3[] seekpoints;
+            List<Vector3> seekList = new List<Vector3>();
+            foreach(Transform t in deerStart[index].transform)
+            {
+                seekList.Add(t.position);
+            }
+            seekpoints=seekList.ToArray();
+            herds.Add(new Flock(Random.Range(minDeer,maxDeer+1),deerStart[index].transform.position,deerPrefab,seekpoints));
+            usedIndices.Add(index);
 		}
 
 		//set camera to follow the game manager
-		myCamera.GetComponent<SmoothFollow>().target = this.transform;
         myCamera.enabled = true;
+        myCamera.transform.position = new Vector3(wolfStart.x, 50, wolfStart.z);
         
 	}
 
@@ -161,7 +174,7 @@ public class GameManager : MonoBehaviour {
                 }
                 else
                 {
-                    rand = Random.Range(0.0f, 10000.0f);
+                    rand = Random.Range(0.0f, 11000.0f);
                     if (rand < flowField[i, j].sqrMagnitude)
                     {
                         Object prefab;
@@ -183,6 +196,19 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+    }
+
+    public Vector3[] getSeekPoints()
+    {
+        int index = Random.Range(0, deerStart.Count);
+        Vector3[] seekpoints;
+        List<Vector3> seekList = new List<Vector3>();
+        foreach (Transform t in deerStart[index].transform)
+        {
+            seekList.Add(t.position);
+        }
+        seekpoints = seekList.ToArray();
+        return seekpoints;
     }
 
     /// <summary>
@@ -221,14 +247,14 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void determineStartingLocations()
     {
-		deerStart = new List<Vector3> ();
+		deerStart = new List<GameObject> ();
         GameObject[] waypoints = GameObject.FindGameObjectsWithTag("waypoint"); //get all the waypoints
 
         foreach(GameObject waypoint in waypoints)
         {
             if(!waypoint.GetComponent<waypointScript>().hasCabin && !waypoint.GetComponent<waypointScript>().wolfStart)
             {
-                deerStart.Add(waypoint.transform.position);
+                deerStart.Add(waypoint);
             }
             else if(waypoint.GetComponent<waypointScript>().wolfStart)
             {
@@ -256,7 +282,7 @@ public class GameManager : MonoBehaviour {
             flock.CalcCentroid();
             flock.CalcFlockDirection();
         }
-    /*
+    
         //for switching cameras
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -272,30 +298,31 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        //follow the correct herd
-        if(cameraID == 0)
-        {
-            this.transform.position = wolves.Centroid;
-            this.transform.forward = wolves.FlockDirection;
+         if(Input.GetKey(KeyCode.RightArrow))
+         {
+             myCamera.transform.position = new Vector3(myCamera.transform.position.x + 1,myCamera.transform.position.y,myCamera.transform.position.z);
+         }
+         if(Input.GetKey(KeyCode.LeftArrow))
+         {
+             myCamera.transform.position = new Vector3(myCamera.transform.position.x - 1,myCamera.transform.position.y,myCamera.transform.position.z);
+         }
+         if(Input.GetKey(KeyCode.DownArrow))
+         {
+             myCamera.transform.position = new Vector3(myCamera.transform.position.x,myCamera.transform.position.y,myCamera.transform.position.z-1);
+         }
+         if(Input.GetKey(KeyCode.UpArrow))
+         {
+             myCamera.transform.position = new Vector3(myCamera.transform.position.x,myCamera.transform.position.y,myCamera.transform.position.z+1);
+         }
+        
+        
+       
         }
-        else
-        {
-            if (herds.Count <= cameraID)
-            {
-                this.transform.position = herds[cameraID - 1].Centroid;
-                this.transform.forward = herds[cameraID - 1].FlockDirection;
-            }
-            else
-            {
-                this.transform.position = wolves.Centroid;
-                this.transform.forward = wolves.FlockDirection;
-            }
-        }
-     */
+     
 	}
 
 	
 
 	
 
-}
+

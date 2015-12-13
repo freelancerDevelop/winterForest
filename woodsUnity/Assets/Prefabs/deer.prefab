@@ -8,11 +8,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 407574}
-  - 33: {fileID: 3370226}
-  - 23: {fileID: 2324702}
   - 65: {fileID: 6567204}
   - 143: {fileID: 14330652}
   - 114: {fileID: 11430922}
+  - 33: {fileID: 3360198}
+  - 23: {fileID: 2384628}
+  - 95: {fileID: 9567056}
   m_Layer: 0
   m_Name: deer
   m_TagString: deer
@@ -28,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 126408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2324702
+--- !u!23 &2384628
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -42,7 +43,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b0367e0d2020715409bbddc55de78f79, type: 2}
+  - {fileID: 2100000, guid: 6fdb7d875dc2c6149ab16975cb611695, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -56,13 +57,13 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3370226
+--- !u!33 &3360198
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126408}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
 --- !u!65 &6567204
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -73,8 +74,25 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: .443946123, y: 1.19678032, z: 2.10847211}
+  m_Center: {x: -.377777338, y: -.162987128, z: -1.4312042}
+--- !u!95 &9567056
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 924931fc9d11ad94abb2a3319c094178, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11430922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,26 +104,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23003a3a4409b274c977104454f16d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 3
-  maxForce: 7
+  maxForce: 10
   mass: 1
   radius: 2
-  safeDistance: 4
+  safeDistance: 2
   arrivalDistance: 8
   pursueTimestep: 1
   evadeTimestep: 1
-  seekWeight: 0
-  avoidWeight: 6
-  separateDistance: 1
-  separationWeight: 6
-  cohesionWeight: 5
-  alignmentWeight: 8
-  boundsWeight: 0
-  wanderWeight: 3
-  flockRadius: 8
+  seekWeight: 8
+  avoidWeight: 4
+  separateDistance: 8
+  separationWeight: 8
+  cohesionWeight: 4
+  alignmentWeight: 4
+  boundsWeight: 40
+  wanderWeight: 0
+  flockRadius: 20
   leaderRadius: 0
   state: 0
-  regroupRadius: 8
+  walkMaxSpeed: 4
+  runMaxSpeed: 7
+  flowWeight: 0
+  id: 0
+  regroupRadius: 100
   fleedistance: 75
 --- !u!143 &14330652
 CharacterController:
@@ -117,8 +138,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
-  m_Radius: .5
+  m_Height: .870806098
+  m_Radius: -.155804276
   m_SlopeLimit: 45
   m_StepOffset: .300000012
   m_SkinWidth: .0799999982
@@ -149,19 +170,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: safeDistance
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: flockRadius
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cohesionWeight
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxForce
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxSpeed
@@ -169,47 +190,47 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: boundsWeight
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: alignmentWeight
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separationWeight
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: separateDistance
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: seekWeight
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: avoidWeight
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: wanderWeight
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+      objectReference: {fileID: 4300000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_StepOffset
@@ -222,6 +243,42 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: fleedistance
       value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fdb7d875dc2c6149ab16975cb611695, type: 2}
+    - target: {fileID: 0}
+      propertyPath: walkMaxSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: runMaxSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 25356f9aadc2d474b894d67284705d1b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 924931fc9d11ad94abb2a3319c094178, type: 2}
+    - target: {fileID: 0}
+      propertyPath: flowWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: regroupRadius
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

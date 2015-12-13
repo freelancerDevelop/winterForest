@@ -72,7 +72,7 @@ public class Flocker : Vehicle {
         }
         Vector3 desired = Vector3.zero;
 
-        //remarkably similar to obstacle avoidance, hmm..
+        
         for (int i = 0; i < nearest.Count; i++)
         {
             Vector3 vecToCenter = nearest[i].transform.position - this.transform.position;
@@ -116,12 +116,13 @@ public class Flocker : Vehicle {
     /// <param name="radius">The radius of the bounding circle</param>
     /// <param name="center">The center of the bounding circle</param>
     /// <returns>A force vector towards the center point</returns>
-    public Vector3 stayInBounds(float radius, Vector3 center)
+    public Vector3 stayInBounds()
     {
-        if ((this.transform.position - center).sqrMagnitude > radius * radius)
-        {   
-           
-            return seek(center); //could be more sophisticated, but... meh
+        if (this.transform.position.x +this.velocity.x> gm.BOUNDS_CENTER.x+gm.BOUNDS_XRAD || this.transform.position.z + this.velocity.z > gm.BOUNDS_CENTER.z + gm.BOUNDS_ZRAD
+            || this.transform.position.x + this.velocity.x < 0 || this.transform.position.z + this.velocity.z < 0)
+        {
+            Debug.Log("staying in bounds");
+            return seek(gm.BOUNDS_CENTER); //could be more sophisticated, but... meh
            
         }
         else
@@ -134,7 +135,8 @@ public class Flocker : Vehicle {
     /// <returns>the vector from the flow field corresponding to the flocker's current position</returns>
     public Vector3 flowFollow()
     {
-        return gm.getFlow((int)this.transform.position.x, (int)this.transform.position.z);
+        
+        return (gm.getFlow((int)(this.transform.position.x), (int)(this.transform.position.z)) - this.velocity).normalized * maxSpeed;
     }
     /// <summary>
     /// followLeader calculates a point behind the flock's leader that they will all try to converge upon. it will

@@ -8,6 +8,7 @@ TagManager:
   - wolf
   - player
   - waypoint
+  - seekpoint
   layers:
   - Default
   - TransparentFX

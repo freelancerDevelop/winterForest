@@ -15,7 +15,8 @@ public class Flock{
     private Vector3 flockDirection;
     private int numFlockers;
 	public int leader = -1; //always -1 for deer, will be assigned for wolf
-
+    public Vector3[] seekpoints;
+    public int seekindex;
     public int NumFlockers { get { return numFlockers; } }
     public Vector3 Centroid { get { return centroid; } }
     public Vector3 FlockDirection { get { return flockDirection; } }
@@ -30,19 +31,20 @@ public class Flock{
     /// <param name="numFlock"> Number of flockers in the flock</param>
     /// <param name="centroidStart"> The starting position of the centroid</param>
     /// <param name="prefab"> The prefab of the flocker</param>
-    public Flock(int numFlock, Vector3 centroidStart, GameObject prefab)
+    public Flock(int numFlock, Vector3 centroidStart, GameObject prefab, Vector3[]seekPoints)
     {
         centroid = Vector3.zero;
         flockDirection = Vector3.zero;
         flockers = new List<Flocker>();
         numFlockers = numFlock;
-
+        seekpoints = seekPoints;
         for (int i = 0; i < numFlock; i++)
         {
-            GameObject newflocker = (GameObject) Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), 0.97f, Random.Range(0, 6)), Quaternion.identity);
+            GameObject newflocker = (GameObject) Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(0, 6), prefab.GetComponent<BoxCollider>().size.y, Random.Range(0, 6)), Quaternion.identity);
             flockers.Add(newflocker.GetComponent<Flocker>());
             flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
-
+            flockers[i].GetComponent<deerScript>().id = i;
+           
         }
 
 
@@ -58,7 +60,7 @@ public class Flock{
 
         for (int i = 0; i < numFlock; i++)
         {
-            GameObject newThing = (GameObject)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(4, 6), 1.2f, Random.Range(4, 6)), Quaternion.identity);
+            GameObject newThing = (GameObject)Object.Instantiate(prefab, centroidStart + new Vector3(Random.Range(4, 6), 1.8f, Random.Range(4, 6)), Quaternion.identity);
             flockers.Add(newThing.GetComponent<Flocker>());
             flockers[i].GetComponent<Flocker>().flock = this; //let the flocker know what flock they're in
             flockers[i].GetComponent<wolfScript>().id = i;

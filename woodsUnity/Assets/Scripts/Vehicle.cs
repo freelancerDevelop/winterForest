@@ -18,7 +18,7 @@ abstract public class Vehicle : MonoBehaviour {
 	protected Vector3 velocity;
 
     //values to be set in the inspector
-	protected float maxSpeed; //caps the magnitude of the velocity vector
+	protected float maxSpeed =5; //caps the magnitude of the velocity vector
 	public float maxForce; //caps the applied force vector
 	public float mass; //inversely affects the impact of force on acceleration
 	public float radius; //radius of the theoretical bounding sphere on the object
@@ -30,6 +30,9 @@ abstract public class Vehicle : MonoBehaviour {
 
 
     protected GameManager gm;
+    protected Animator anim;
+    protected int runHash = Animator.StringToHash("run");
+    protected int walkHash = Animator.StringToHash("walk");
 
 	//access to character controller to move the model
 	CharacterController charControl;
@@ -51,6 +54,8 @@ abstract public class Vehicle : MonoBehaviour {
             radius = lenZ / 2;
         else
             radius = lenZ / 2;
+
+        anim = GetComponent<Animator>();
 	}
 
 	
@@ -116,7 +121,7 @@ abstract public class Vehicle : MonoBehaviour {
     /// <returns>A force vector pulling the vehicle away from the threat</returns>
     protected Vector3 flee(Vector3 threatPosition)
     {
-        return seek(-threatPosition); //easy peasy, just go the other way
+        return -1*seek(threatPosition); //easy peasy, just go the other way
     }
     /// <summary>
     /// avoid returns the force needed to avoid the gameObject with an ObstacleScript that is passed in to a parameter.
@@ -153,14 +158,19 @@ abstract public class Vehicle : MonoBehaviour {
     /// <returns>A force vector that will randomly change the direction of travel.</returns>
     protected Vector3 wander()
     {
-        wanderAngle += Random.Range(-.6f, .6f); //increment the angle try to keep it smooth
-        if (wanderAngle > Mathf.PI * 2)
-            wanderAngle -= Mathf.PI * 2;
-        else if (wanderAngle < 0)
-            wanderAngle += Mathf.PI * 2;
-        Vector3 force = new Vector3(Mathf.Cos(wanderAngle), 0, Mathf.Sin(wanderAngle))*5; //vector in new direction of length 5
-        return force + 5*this.transform.forward - this.velocity; //move it 5 units in front of us, then use as a desired velocity
+       //calculate the circle center
+        Vector3 center = this.transform.forward*5;
+        wanderAngle += Random.Range(0.0f, 1.0f)*Mathf.Deg2Rad*30.0f -(Mathf.Deg2Rad*30.0f*.5f);
+        Vector3 displacement = new Vector3(Mathf.Cos(wanderAngle)*5, 0, Mathf.Sin(wanderAngle)*5);
+        //Debug.Log(center + displacement);
+        return (center+displacement-this.velocity).normalized*maxSpeed;
+;
+        
+
+
     }
+
+ 
 	
     /// <summary>
     /// Arrive checks if the vehicle is within a certain distance of its target (parameter), and calculates a force
@@ -176,6 +186,8 @@ abstract public class Vehicle : MonoBehaviour {
         {
             
             float scale = map(desired.sqrMagnitude, 0, arrivalDistance * arrivalDistance, 0, maxSpeed);
+            if (scale < .1)
+                scale = 0;
             desired = desired.normalized * scale;
         }
         else

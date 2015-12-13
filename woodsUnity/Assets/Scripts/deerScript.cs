@@ -10,6 +10,13 @@ public class deerScript : Flocker {
 
     public enum DeerState { GRAZE, FLEE, SEARCH}; 
     public DeerState state = DeerState.GRAZE;
+    public float walkMaxSpeed;
+    public float runMaxSpeed;
+    public float flowWeight;
+    
+    public int id;
+   
+    
 
     //**********
     // Inspector Variables
@@ -21,6 +28,8 @@ public class deerScript : Flocker {
     /// The particular calcSteeringForces used by
     /// deer.
     /// </summary>
+    
+    
     protected override void calcSteeringForces()
     {
 	
@@ -30,24 +39,39 @@ public class deerScript : Flocker {
         {
             case DeerState.GRAZE:
                 {
+                    if (anim.GetCurrentAnimatorStateInfo(0).nameHash == runHash)
+                        anim.SetTrigger("walkTrigger");
+                    maxSpeed = walkMaxSpeed;
+
+                    if ((this.transform.position - flock.seekpoints[flock.seekindex]).sqrMagnitude < 4)
+                    {
+                        int currIndex = flock.seekindex;
+                        do
+                            flock.seekindex = Random.Range(0, flock.seekpoints.Length);
+                        while (flock.seekindex == currIndex);
+                    }
+
                     steeringForce += wander() * wanderWeight;
+                    steeringForce += seek(flock.seekpoints[flock.seekindex]) * seekWeight;
+                    steeringForce += this.transform.forward;
+                   
+                    temp += cohesion(flock.Centroid) * cohesionWeight; //only non-zero conditionally
+                    temp += separation(separateDistance) * separationWeight; //also only non-zero conditionally   
+                    if(temp == Vector3.zero)
+                        steeringForce += seek(flock.seekpoints[flock.seekindex]) * seekWeight;
+                    temp += alignment(flock.FlockDirection) * alignmentWeight; //will always apply a force if called
+
                     foreach (GameObject obstacle in gm.Obstacles)
                     {
                         temp += avoid(obstacle) * avoidWeight;
                     }
-                    temp += stayInBounds(gm.BOUNDS_RADIUS, gm.BOUNDS_CENTER) * boundsWeight;
-                    steeringForce += temp;
-                    if (temp == Vector3.zero)
-                    {
-                        temp += cohesion(flock.Centroid) * cohesionWeight; //only non-zero conditionally
-                        if (temp == Vector3.zero)
-                            temp += separation(separateDistance) * separationWeight; //also only non-zero conditionally
-                        //if(temp == Vector3.zero)
-                        temp += alignment(flock.FlockDirection) * alignmentWeight; //will always apply a force if called
 
-                    }
                     steeringForce += temp;
-                    steeringForce += flowFollow();
+
+
+
+                    steeringForce += temp;
+                    steeringForce += flowFollow() * flowWeight;
                     int index = getNearest(gm.Wolves.Flockers);
                     if (index > -1)
                     {
@@ -56,8 +80,8 @@ public class deerScript : Flocker {
                         if ((this.transform.position - nearestWolf.transform.position).sqrMagnitude < fleedistance * fleedistance)
                         {
                             Debug.Log("Change State to flee");
-                            foreach(Flocker f in flock.Flockers)
-                                if(f!=null)
+                            foreach (Flocker f in flock.Flockers)
+                                if (f != null)
                                     f.GetComponent<deerScript>().state = DeerState.FLEE;
                             if (gm.herds.Contains(flock))
                                 gm.herds.Remove(flock); //should get garbage collected if we remove our way of getting it
@@ -69,26 +93,32 @@ public class deerScript : Flocker {
 		//fleeing
             case DeerState.FLEE:
             {
-                int index = getNearest(gm.Wolves.Flockers);
-                if (index != -1)
+                if (anim.GetCurrentAnimatorStateInfo(0).nameHash == walkHash)
+                    anim.SetTrigger("runTrigger");
+                maxSpeed = runMaxSpeed;
+                bool safe = true;
+                foreach(Flocker wolf in gm.Wolves.Flockers)
                 {
-                    Flocker nearest = gm.Wolves.Flockers[index];
-                    steeringForce += evade(nearest);
-                    if ((nearest.transform.position - this.transform.position).sqrMagnitude > fleedistance * fleedistance)
-                        state = DeerState.SEARCH;
+                    steeringForce += flee(wolf.transform.position);
+                    if ((wolf.transform.position - this.transform.position).sqrMagnitude < fleedistance * fleedistance)
+                        safe = false;
                 }
+                steeringForce += separation(separateDistance);
+                if (safe)
+                    state = DeerState.SEARCH;
                 break;
             }
 		//regroup
             case DeerState.SEARCH:
             {
-                steeringForce += stayInBounds(gm.BOUNDS_RADIUS, gm.BOUNDS_CENTER);
+                maxSpeed = walkMaxSpeed;
                 temp += regroup();
                 if (temp == Vector3.zero) //we found a group!
                     state = DeerState.GRAZE;
                 break;
             }
     }
+        steeringForce += stayInBounds() * boundsWeight;
         base.calcSteeringForces();
     }	
 
@@ -110,7 +140,7 @@ public class deerScript : Flocker {
         }
         Flocker nearestDeer = deerFlockers[getNearest(deerFlockers)];
 		
-		if((nearestDeer.transform.position - this.transform.position).sqrMagnitude < regroupRadius*regroupRadius)
+		if(nearestDeer != null && (nearestDeer.transform.position - this.transform.position).sqrMagnitude < regroupRadius*regroupRadius)
         {
             //if that deer has a flock, join it
             if(nearestDeer.flock != null)
@@ -124,6 +154,8 @@ public class deerScript : Flocker {
                 gm.herds.Add (new Flock(this)); //will assign it to us within the constructor
 				flock.addFlocker (nearestDeer);
 				nearestDeer.flock = flock;
+                flock.seekpoints = gm.getSeekPoints();
+                flock.seekindex = 0;
             }
             return Vector3.zero; //flag
         }

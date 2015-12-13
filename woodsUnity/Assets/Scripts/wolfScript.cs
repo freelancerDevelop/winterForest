@@ -44,7 +44,6 @@ public class wolfScript:Flocker {
 				if(flock.leader == this.id)
 				{
 					steeringForce+= wander()*wanderWeight;
-
                     //head towards the closest deer
                     GameObject[] deer = GameObject.FindGameObjectsWithTag("deer");
                     List<Flocker> deerList = new List<Flocker>();
@@ -74,6 +73,7 @@ public class wolfScript:Flocker {
                 {
                     steeringForce += avoid(obstacle) * avoidWeight;
                 }
+                steeringForce += stayInBounds() * boundsWeight;
 				foreach(Flock dflock in gm.Herds)
 				{
 					if((this.flock.Centroid - dflock.Centroid).sqrMagnitude < huntDistance * huntDistance)
@@ -88,14 +88,14 @@ public class wolfScript:Flocker {
 			}
 		case WolfState.HUNT:
 			{
-                if (isHerder) //if you're supposed to be containing, contain!
-                {
-                    maxSpeed = runMaxSpeed*1.5f;
+                //if (isHerder) //if you're supposed to be containing, contain!
+                //{
+                   // maxSpeed = runMaxSpeed*1.5f;
                     //Debug.Log("herding");
-                    steeringForce += herd();
-                }
-                else //otherwise, try to catch the nearest deer
-                {
+                    //steeringForce += herd();
+                //}
+                //else //otherwise, try to catch the nearest deer
+                //{
                     //Debug.Log("hunting");
                     maxSpeed = runMaxSpeed;
                     int nearestIndex;
@@ -111,7 +111,8 @@ public class wolfScript:Flocker {
                     }
                     else
                         Debug.Log("hunt index -1");
-                }
+                    
+                //}
 					//deer collision detection 
                 if(huntFlock != null)
                     foreach(Flocker f in huntFlock.Flockers)
@@ -139,6 +140,7 @@ public class wolfScript:Flocker {
                 {
                     steeringForce += avoid(obstacle) * avoidWeight;
                 }
+                steeringForce += separation(separateDistance) * separationWeight;
 				break;
 			}
 		case WolfState.EAT:
@@ -162,7 +164,9 @@ public class wolfScript:Flocker {
                 }
                 break;
 			}
+            
 		}
+        steeringForce += stayInBounds() * boundsWeight;
         base.calcSteeringForces();
     }	
 
@@ -196,12 +200,33 @@ public class wolfScript:Flocker {
                 return seek(seekPoint) + force;
             }
 
+           
+                    
 
         }
         
 
         //if we get here, then nobody's trying to leave, strangely..
-        return Vector3.zero;
+        maxSpeed = runMaxSpeed;
+        int nearestIndex;
+        if (huntFlock != null)
+            nearestIndex = getNearest(huntFlock.Flockers);
+        else
+            nearestIndex = -1;
+
+        if (nearestIndex > -1)
+        {
+            if (huntFlock.Flockers[nearestIndex] != null)
+                return pursue(huntFlock.Flockers[nearestIndex]);
+            else
+                return Vector3.zero;
+
+
+
+        }
+        else
+            return Vector3.zero;
+        
     }
 
 
